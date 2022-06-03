@@ -1,0 +1,85 @@
+
+
+button.Calc-Active:hover{
+    background: #6C63FF;
+    border: 1px solid #6C63FF;
+}
+
+button.Calc-Active:active{
+    background: #6C63FF;
+    border: 1px solid #6C63FF;
+}
+
+
+button.Calc-Desac:hover{
+    background: rgba(196, 196, 196, 0.56);
+    border: 1px solid rgba(196, 196, 196, 0.56);
+}
+
+button.Calc-Desac:active{
+    background: rgba(196, 196, 196, 0.56);
+    border: 1px solid rgba(196, 196, 196, 0.56);
+}
+
+button.Calc-Active{
+    background: #6C63FF;
+    border-radius: 5px;
+    border-color: #6C63FF;
+    padding: auto;
+    color: white;
+    width: 120px;
+    height: 32px;
+    font-size: 12px;
+    border: 1px solid #6C63FF;
+}
+
+.right.carousel-control, .left.carousel-control {
+    opacity: 0;
+    filter:alpha(opacity=0); /* IE support */
+}
+
+button.Calc-Active:hover{
+    background: #6C63FF;
+    border: 1px solid #6C63FF;
+}
+
+button.Calc-Active:active{
+    background: #6C63FF;
+    border: 1px solid #6C63FF;
+}
+
+button.Calc-Desac{
+    background-color: transparent;
+    color:rgba(196, 196, 196, 0.56);
+    border: 1px solid rgba(196, 196, 196, 0.56);
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: auto;
+    font-size: 12px;
+    height: 32px;
+    margin: auto;
+    width: 120px;    
+}
+
+button.Calc-Desac:hover{
+    background: rgba(196, 196, 196, 0.56);
+    border: 1px solid rgba(196, 196, 196, 0.56);
+}
+
+button.Calc-Desac:active{
+    background: rgba(196, 196, 196, 0.56);
+    border: 1px solid rgba(196, 196, 196, 0.56);
+}
+
+
+button.btn-Calculadora{
+    background: #6C63FF;
+    box-shadow: 0px 4px 20px rgba(196, 196, 196, 0.4);
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    border-color: #6C63FF;
+    height: 3.5em;
+}
