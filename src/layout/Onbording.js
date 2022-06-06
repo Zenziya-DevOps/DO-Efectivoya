@@ -12,9 +12,8 @@ export class Vw_Onboring extends Component {
   render() {
     return (
       <div id="master">
-        Hola
-        {/* <COMP_Header /> */}
-        {/* <COMP_Pasos />
+        <COMP_Header />
+        <COMP_Pasos />
         <div
           style={{
             backgroundImage: `url(${assets}/bk_1.svg)`,
@@ -29,7 +28,7 @@ export class Vw_Onboring extends Component {
         <COMP_Consultas />
         <COMP_historia />
         <COMP_Cuotas />
-        <COMP_Footer /> */}
+        <COMP_Footer />
       </div>
     )
   }
