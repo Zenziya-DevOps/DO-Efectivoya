@@ -2,6 +2,10 @@
   "name": "v7",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "14.x",
+    "npm": "8.x"
+  },
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
