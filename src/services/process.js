@@ -24,7 +24,6 @@ export const Process = async (B, M) => {
 }
 
 export const ProcessRealURL = async (data, path) => {
-  debugger
   const resp = await axios({
     method: "post",
     port: port,

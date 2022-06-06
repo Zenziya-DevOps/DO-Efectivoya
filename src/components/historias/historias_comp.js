@@ -162,9 +162,12 @@ export class COMP_historia extends Component {
 
                   <Col xs={12} className="pt-3 pb-3">
                     <div className="pb-5">
-                      {constant.quienesSomos.map((x) => {
+                      {constant.quienesSomos.map((x, i) => {
                         return (
-                          <Row className="pt-3 pb-3 justify-content-md-center">
+                          <Row
+                            className="pt-3 pb-3 justify-content-md-center"
+                            key={i}
+                          >
                             <Col
                               xs={device.device.type === "desktop" ? 1 : 12}
                               className="pb-3 my-auto text-center"
