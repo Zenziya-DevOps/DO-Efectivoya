@@ -12,7 +12,8 @@ export class Vw_Onboring extends Component {
   render() {
     return (
       <div id="master">
-        <COMP_Header />
+        Hola
+        {/* <COMP_Header /> */}
         {/* <COMP_Pasos />
         <div
           style={{
