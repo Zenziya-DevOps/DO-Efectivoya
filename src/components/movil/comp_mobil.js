@@ -19,6 +19,8 @@ import { step } from "../../constants"
 import Countdown from "react-countdown"
 
 import acceptz from "../../images/acceptz.svg"
+import accept from "../../images/accept.svg"
+import error from "../../images/error.svg"
 
 const redirect = () => {
   interaccionesService.interacciones({
@@ -125,7 +127,7 @@ export class COMPMobile extends Component {
                 <input
                   id="txtmobil"
                   type="text"
-                  maxlength="10"
+                  maxLength="10"
                   placeholder="Ingresa tu número de celular de 10 dígitos"
                   style={Input_(1, 4)}
                   onChange={
@@ -143,7 +145,7 @@ export class COMPMobile extends Component {
                         if (/[a-zA-Z- ]/g.exec(e.target.value) != null) {
                           ReactDOM.render(
                             <img
-                              src={`${assets}error.svg`}
+                              src={`${error}`}
                               className="img img-fluid"
                               style={{
                                 display: "block",
@@ -213,23 +215,17 @@ export class COMPMobile extends Component {
                               "Movil/SendCodeAccess"
                             )
 
-                            response.map((x) => {
-                              // ;(mobile.access = x.Pin),
-                              //   (document.getElementById(
-                              //     "txtmobil"
-                              //   ).style.borderColor = colors[6])
-
-                              ReactDOM.render(
-                                <img
-                                  src={`${assets}accept.svg`}
-                                  className="img img-fluid"
-                                  style={{ display: "block" }}
-                                  id="lblele"
-                                />,
-                                document.getElementById("lblele")
-                              )
-                              this.setState({ isValidCode: true })
-                            })
+                            mobile.access = response[0].Pin
+                            ReactDOM.render(
+                              <img
+                                src={`${accept}`}
+                                className="img img-fluid"
+                                style={{ display: "block" }}
+                                id="lblele"
+                              />,
+                              document.getElementById("lblele")
+                            )
+                            this.setState({ isValidCode: true })
                           } else {
                             this.setState({ isValidCode: false })
                           }

@@ -137,7 +137,7 @@ export class COMPIdentification extends Component {
                 <input
                   id="txtnumber"
                   type="text"
-                  maxlength="11"
+                  maxLength="11"
                   placeholder="Ingresa tu número de cédula de 10 dígitos"
                   style={Input_(1, 4)}
                   onChange={
