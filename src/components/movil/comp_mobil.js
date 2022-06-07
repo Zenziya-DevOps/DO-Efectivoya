@@ -18,7 +18,7 @@ import { keyOrigen } from "../../constants"
 import { step } from "../../constants"
 import Countdown from "react-countdown"
 
-const assets = process.env.REACT_APP_ASSETS
+import acceptz from "../../images/acceptz.svg"
 
 const redirect = () => {
   interaccionesService.interacciones({
@@ -83,7 +83,7 @@ export class COMPMobile extends Component {
             <Row className="d-flex justify-content-center">
               <label style={Steps_(2)}>
                 <img
-                  src={`${assets}acceptz.svg`}
+                  src={`${acceptz}`}
                   className="img img-fluid"
                   style={{ width: "11px" }}
                 />{" "}

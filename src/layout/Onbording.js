@@ -6,7 +6,7 @@ import { COMP_Consultas } from "../components/consultas/comp_consultas"
 import { COMP_historia } from "../components/historias/historias_comp"
 import { COMP_Cuotas } from "../components/cuota/comp_cuota"
 import { COMP_Footer } from "../components/footer/comp_footer"
-const assets = process.env.REACT_APP_ASSETS
+import bk_1 from "../images/bk_1.svg"
 
 export class Vw_Onboring extends Component {
   render() {
@@ -16,7 +16,7 @@ export class Vw_Onboring extends Component {
         <COMP_Pasos />
         <div
           style={{
-            backgroundImage: `url(${assets}/bk_1.svg)`,
+            backgroundImage: `url(${bk_1})`,
             backgroundSize: "cover",
             backgroundPosition: "bottom",
             backgroundRepeat: "no-repeat",

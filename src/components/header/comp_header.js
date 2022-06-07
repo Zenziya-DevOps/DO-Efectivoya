@@ -7,7 +7,8 @@ import Burger from "./Nav/Burger"
 import { Youtube } from "react-bootstrap-icons"
 import * as constant from "../../constants"
 import imagenCarrousel from "./../../images/EFECTIVO-YO-700png.png"
-const assets = process.env.REACT_APP_ASSETS
+import bk_0 from "../../images/bk_0.svg"
+import ico from "../../images/ico.svg"
 
 export class COMP_Header extends Component {
   render() {
@@ -15,7 +16,7 @@ export class COMP_Header extends Component {
       <>
         <div
           style={{
-            backgroundImage: `url(${assets}/bk_0.svg)`,
+            backgroundImage: `url(${bk_0})`,
             backgroundSize: "cover ",
             backgroundPosition: "top",
             backgroundRepeat: "no-repeat",
@@ -27,15 +28,7 @@ export class COMP_Header extends Component {
               {device.device.type === "desktop" ? (
                 <>
                   <Col>
-                    {constant.header.map((x, i) => {
-                      return (
-                        <img
-                          key={i}
-                          src={`${assets}${x.Contenido}`}
-                          style={{ width: "calc(25% - 1em)" }}
-                        />
-                      )
-                    })}
+                    <img src={`${ico}`} style={{ width: "calc(25% - 1em)" }} />
                   </Col>
 
                   <Col className="ml-auto">
@@ -63,15 +56,7 @@ export class COMP_Header extends Component {
               ) : (
                 <>
                   <Col className="p-2">
-                    {constant.header.map((x, i) => {
-                      return (
-                        <img
-                          key={i}
-                          src={`${assets}${x.Contenido}`}
-                          style={{ width: "195px" }}
-                        />
-                      )
-                    })}
+                    <img src={`${ico}`} style={{ width: "195px" }} />
                   </Col>
 
                   <Col xs={1} className="my-auto ml-auto">

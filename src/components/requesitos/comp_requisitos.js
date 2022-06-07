@@ -2,8 +2,9 @@ import React, { Component } from "react"
 import { label_ } from "../../styles/leters"
 import { Container, Row, Col } from "react-bootstrap"
 import { device } from "../../model/device"
-import * as constant from "../../constants"
-const assets = process.env.REACT_APP_ASSETS
+import pass_4 from "../../images/pass_4.svg"
+import pass_5 from "../../images/pass_5.svg"
+import pass_6 from "../../images/pass_6.svg"
 
 export class COMP_Requisitos extends Component {
   render() {
@@ -29,32 +30,71 @@ export class COMP_Requisitos extends Component {
 
               <Col xs={12} className="pt-3 pb-5">
                 <Row>
-                  {constant.pasosReq.map((x, i) => {
-                    return (
-                      <Col
-                        xs={device.device.type === "desktop" ? 0 : 12}
-                        key={i}
-                        className="mt-5 text-center"
-                      >
-                        <Col xs={12}>
-                          <img
-                            src={`${assets}${x.Source}`}
-                            className="img img-fluid"
-                            style={{ height: "45px" }}
-                          />
-                        </Col>
-                        <Col xs={12} className="mt-3">
-                          <span className="mb-0" style={label_(3, 0, "17px")}>
-                            {x.Header}
-                          </span>
-                          <br />
-                          <span className="mb-0" style={label_(3, 0, "17px")}>
-                            {x.Contenido}
-                          </span>
-                        </Col>
-                      </Col>
-                    )
-                  })}
+                  <Col
+                    xs={device.device.type === "desktop" ? 0 : 12}
+                    className="mt-5 text-center"
+                  >
+                    <Col xs={12}>
+                      <img
+                        src={`${pass_4}`}
+                        className="img img-fluid"
+                        style={{ height: "45px" }}
+                      />
+                    </Col>
+                    <Col xs={12} className="mt-3">
+                      <span className="mb-0" style={label_(3, 0, "17px")}>
+                        Tener un teléfono celular
+                      </span>
+                      <br />
+                      <span className="mb-0" style={label_(3, 0, "17px")}>
+                        con línea activa.
+                      </span>
+                    </Col>
+                  </Col>
+
+                  <Col
+                    xs={device.device.type === "desktop" ? 0 : 12}
+                    className="mt-5 text-center"
+                  >
+                    <Col xs={12}>
+                      <img
+                        src={`${pass_5}`}
+                        className="img img-fluid"
+                        style={{ height: "45px" }}
+                      />
+                    </Col>
+                    <Col xs={12} className="mt-3">
+                      <span className="mb-0" style={label_(3, 0, "17px")}>
+                        Tener una cuenta bancaria
+                      </span>
+                      <br />
+                      <span className="mb-0" style={label_(3, 0, "17px")}>
+                        a tu nombre, en RD$ y activa.
+                      </span>
+                    </Col>
+                  </Col>
+
+                  <Col
+                    xs={device.device.type === "desktop" ? 0 : 12}
+                    className="mt-5 text-center"
+                  >
+                    <Col xs={12}>
+                      <img
+                        src={`${pass_6}`}
+                        className="img img-fluid"
+                        style={{ height: "45px" }}
+                      />
+                    </Col>
+                    <Col xs={12} className="mt-3">
+                      <span className="mb-0" style={label_(3, 0, "17px")}>
+                        Ser dominicano y
+                      </span>
+                      <br />
+                      <span className="mb-0" style={label_(3, 0, "17px")}>
+                        mayor de 18 años
+                      </span>
+                    </Col>
+                  </Col>
                 </Row>
               </Col>
             </Row>

@@ -3,7 +3,10 @@ import { label_ } from "../../styles/leters"
 import { Container, Row, Col } from "react-bootstrap"
 import { device } from "../../model/device"
 import * as constant from "../../constants"
-const assets = process.env.REACT_APP_ASSETS
+import bk_2 from "../../images/bk_2.svg"
+import pass_1 from "../../images/pass_1.svg"
+import pass_2 from "../../images/pass_2.svg"
+import pass_3 from "../../images/pass_3.svg"
 
 export class COMP_Pasos extends Component {
   render() {
@@ -11,7 +14,7 @@ export class COMP_Pasos extends Component {
       <>
         <div
           style={{
-            backgroundImage: `url(${assets}/bk_2.svg)`,
+            backgroundImage: `url(${bk_2})`,
             backgroundSize: "contain , cover",
             backgroundPosition: "bottom",
             backgroundRepeat: "no-repeat",
@@ -36,37 +39,91 @@ export class COMP_Pasos extends Component {
 
               <Col xs={12} className="pt-5 pb-2">
                 <Row className="pb-5">
-                  {constant.pasosCredito.map((x, i) => {
-                    return (
-                      <Col
-                        xs={device.device.type === "desktop" ? 0 : 12}
-                        key={i}
-                        className="pt-2 pb-2 text-center"
+                  <Col
+                    xs={device.device.type === "desktop" ? 0 : 12}
+                    className="pt-2 pb-2 text-center"
+                  >
+                    <Col xs={12}>
+                      <img
+                        src={`${pass_1}`}
+                        className="img img-fluid"
+                        style={{ height: "45px" }}
+                      />
+                    </Col>
+                    <Col xs={12} className="pt-2">
+                      <p
+                        className="font-weight-bold"
+                        style={label_(1, 0, "18px")}
                       >
-                        <Col xs={12}>
-                          <img
-                            src={`${assets}${x.Source}`}
-                            className="img img-fluid"
-                            style={{ height: "45px" }}
-                          />
-                        </Col>
-                        <Col xs={12} className="pt-2">
-                          <p
-                            className="font-weight-bold"
-                            style={label_(1, 0, "18px")}
-                          >
-                            {x.Header}
-                          </p>
-                          <p
-                            className="font-weight-normal"
-                            style={label_(1, 0, "16px")}
-                          >
-                            <label className="col-10">{x.Contenido}</label>
-                          </p>
-                        </Col>
-                      </Col>
-                    )
-                  })}
+                        Elige tu préstamo ideal
+                      </p>
+                      <p
+                        className="font-weight-normal"
+                        style={label_(1, 0, "16px")}
+                      >
+                        <label className="col-10">
+                          Tu decides el monto y el plazo: aprobamos en minutos.
+                        </label>
+                      </p>
+                    </Col>
+                  </Col>
+                  <Col
+                    xs={device.device.type === "desktop" ? 0 : 12}
+                    className="pt-2 pb-2 text-center"
+                  >
+                    <Col xs={12}>
+                      <img
+                        src={`${pass_2}`}
+                        className="img img-fluid"
+                        style={{ height: "45px" }}
+                      />
+                    </Col>
+                    <Col xs={12} className="pt-2">
+                      <p
+                        className="font-weight-bold"
+                        style={label_(1, 0, "18px")}
+                      >
+                        Ingresa tus Datos
+                      </p>
+                      <p
+                        className="font-weight-normal"
+                        style={label_(1, 0, "16px")}
+                      >
+                        <label className="col-10">
+                          Ingresa tu número de cédula y tu número telefónico
+                        </label>
+                      </p>
+                    </Col>
+                  </Col>
+                  <Col
+                    xs={device.device.type === "desktop" ? 0 : 12}
+                    className="pt-2 pb-2 text-center"
+                  >
+                    <Col xs={12}>
+                      <img
+                        src={`${pass_3}`}
+                        className="img img-fluid"
+                        style={{ height: "45px" }}
+                      />
+                    </Col>
+                    <Col xs={12} className="pt-2">
+                      <p
+                        className="font-weight-bold"
+                        style={label_(1, 0, "18px")}
+                      >
+                        Recibe el dinero en 24hs.
+                      </p>
+                      <p
+                        className="font-weight-normal"
+                        style={label_(1, 0, "16px")}
+                      >
+                        <label className="col-10">
+                          Depositamos el dinero en tu cuenta en menos de 24
+                          horas.
+                        </label>
+                      </p>
+                    </Col>
+                  </Col>
                 </Row>
               </Col>
             </Row>

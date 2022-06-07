@@ -16,7 +16,8 @@ import { COMP_Aprob } from "./comp_Aprob"
 import { keyOrigen } from "../../constants"
 import { step } from "../../constants"
 import interaccionesService from "../../services/interacciones"
-const assets = process.env.REACT_APP_ASSETS
+import deny from "../../images/deny.svg"
+import pending from "../../images/pending.svg"
 
 export class COMP_Deny extends Component {
   constructor(props) {
@@ -64,7 +65,7 @@ export class COMP_Deny extends Component {
               </Col>
               <Col xs={12} className="pt-2">
                 <img
-                  src={`${assets}deny.svg`}
+                  src={`${deny}`}
                   style={{ height: "145px" }}
                   className="img img-fluid"
                 />
@@ -173,7 +174,7 @@ class COMP_Pending extends Component {
         </Col>
         <Col xs={12}>
           <img
-            src={`${assets}pending.svg`}
+            src={`${pending}`}
             style={{ height: "145px" }}
             className="img img-fluid"
           />

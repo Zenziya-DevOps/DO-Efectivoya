@@ -5,22 +5,19 @@ import { Box_ } from "../../styles/Box"
 import { device } from "../../model/device"
 import { label_ } from "../../styles/leters"
 import * as contants from "./../../constants"
-const assets = process.env.REACT_APP_ASSETS
+import bk from "../../images/bk.svg"
+import ico from "../../images/ico.svg"
+import close from "../../images/close.svg"
+import pass_4 from "../../images/pass_4.svg"
+import pass_5 from "../../images/pass_5.svg"
+import pass_6 from "../../images/pass_6.svg"
 
 export class COMP_Laberinto extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      h: contants.header2,
-      element: contants.pasosReq,
-    }
-  }
-
   render() {
     return (
       <div
         style={{
-          background: `url(${assets}bk.svg) `,
+          background: `url(${bk}) `,
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
@@ -33,21 +30,13 @@ export class COMP_Laberinto extends Component {
             <Col xs={12} className="p-4 w-100">
               <Row>
                 <Col xs={6} className="text-left">
-                  {this.state.h.map((x, i) => {
-                    return (
-                      <img
-                        key={i}
-                        src={`${assets}${x.Contenido}`}
-                        style={{ width: "195px" }}
-                      />
-                    )
-                  })}
+                  <img src={`${ico}`} style={{ width: "195px" }} />
                 </Col>
 
                 <Col xs={6} className="text-right">
                   <a href="./">
                     <img
-                      src={`${assets}close.svg`}
+                      src={`${close}`}
                       className="img img-fluid"
                       id="xclos"
                     />
@@ -65,31 +54,73 @@ export class COMP_Laberinto extends Component {
                         Recuerda los 3 requisitos:
                       </label>
                     </Col>
-                    {this.state.element.map((x, i) => {
-                      return (
-                        <Col xs={10} key={i}>
-                          <Row className="p-2">
-                            <Col className="h-100">
-                              <Row>
-                                <Col xs={2} className="my-auto text-center ">
-                                  <img
-                                    src={`${assets}${x.Source}`}
-                                    className="img img-fluid"
-                                    style={{ height: "45px" }}
-                                  />
-                                </Col>
+                    <Col xs={10}>
+                      <Row className="p-2">
+                        <Col className="h-100">
+                          <Row>
+                            <Col xs={2} className="my-auto text-center ">
+                              <img
+                                src={`${pass_4}`}
+                                className="img img-fluid"
+                                style={{ height: "45px" }}
+                              />
+                            </Col>
 
-                                <Col style={label_(3, 0, "18px")}>
-                                  <label className="font-weight-light">
-                                    {x.Header} <br /> {x.Contenido}
-                                  </label>
-                                </Col>
-                              </Row>
+                            <Col style={label_(3, 0, "18px")}>
+                              <label className="font-weight-light">
+                                Tener un teléfono celular <br /> con línea
+                                activa.
+                              </label>
                             </Col>
                           </Row>
                         </Col>
-                      )
-                    })}
+                      </Row>
+                    </Col>
+
+                    <Col xs={10}>
+                      <Row className="p-2">
+                        <Col className="h-100">
+                          <Row>
+                            <Col xs={2} className="my-auto text-center ">
+                              <img
+                                src={`${pass_5}`}
+                                className="img img-fluid"
+                                style={{ height: "45px" }}
+                              />
+                            </Col>
+
+                            <Col style={label_(3, 0, "18px")}>
+                              <label className="font-weight-light">
+                                Tener una cuenta bancaria <br /> a tu nombre, en
+                                RD$ y activa.
+                              </label>
+                            </Col>
+                          </Row>
+                        </Col>
+                      </Row>
+                    </Col>
+
+                    <Col xs={10}>
+                      <Row className="p-2">
+                        <Col className="h-100">
+                          <Row>
+                            <Col xs={2} className="my-auto text-center ">
+                              <img
+                                src={`${pass_6}`}
+                                className="img img-fluid"
+                                style={{ height: "45px" }}
+                              />
+                            </Col>
+
+                            <Col style={label_(3, 0, "18px")}>
+                              <label className="font-weight-light">
+                                Ser dominicano y <br /> mayor de 18 años
+                              </label>
+                            </Col>
+                          </Row>
+                        </Col>
+                      </Row>
+                    </Col>
                   </Row>
                 </Col>
 
@@ -116,34 +147,78 @@ export class COMP_Laberinto extends Component {
                         Recuerda los 3 requisitos:
                       </label>
                     </Col>
-                    {this.state.element.map((x, i) => {
-                      return (
-                        <Col xs={12} key={i}>
-                          <Row className="p-2">
-                            <Col className="ml-auto h-100">
-                              <Row>
-                                <Col
-                                  xs={2}
-                                  className="mx-auto d-flex align-items-center justify-content-center"
-                                >
-                                  <img
-                                    src={`${assets}${x.Source}`}
-                                    className="img img-fluid"
-                                    style={{ width: "18px" }}
-                                  />
-                                </Col>
-                                <Col style={label_(3, 0, "14px")}>
-                                  <label className="font-weight-light">
-                                    {x.Header}
-                                    {x.Contenido}
-                                  </label>
-                                </Col>
-                              </Row>
+                    <Col xs={12}>
+                      <Row className="p-2">
+                        <Col className="ml-auto h-100">
+                          <Row>
+                            <Col
+                              xs={2}
+                              className="mx-auto d-flex align-items-center justify-content-center"
+                            >
+                              <img
+                                src={`${pass_4}`}
+                                className="img img-fluid"
+                                style={{ width: "18px" }}
+                              />
+                            </Col>
+                            <Col style={label_(3, 0, "14px")}>
+                              <label className="font-weight-light">
+                                Tener un teléfono celular con línea activa.
+                              </label>
                             </Col>
                           </Row>
                         </Col>
-                      )
-                    })}
+                      </Row>
+                    </Col>
+
+                    <Col xs={12}>
+                      <Row className="p-2">
+                        <Col className="ml-auto h-100">
+                          <Row>
+                            <Col
+                              xs={2}
+                              className="mx-auto d-flex align-items-center justify-content-center"
+                            >
+                              <img
+                                src={`${pass_5}`}
+                                className="img img-fluid"
+                                style={{ width: "18px" }}
+                              />
+                            </Col>
+                            <Col style={label_(3, 0, "14px")}>
+                              <label className="font-weight-light">
+                                Tener una cuenta bancaria a tu nombre, en RD$ y
+                                activa.
+                              </label>
+                            </Col>
+                          </Row>
+                        </Col>
+                      </Row>
+                    </Col>
+
+                    <Col xs={12}>
+                      <Row className="p-2">
+                        <Col className="ml-auto h-100">
+                          <Row>
+                            <Col
+                              xs={2}
+                              className="mx-auto d-flex align-items-center justify-content-center"
+                            >
+                              <img
+                                src={`${pass_6}`}
+                                className="img img-fluid"
+                                style={{ width: "18px" }}
+                              />
+                            </Col>
+                            <Col style={label_(3, 0, "14px")}>
+                              <label className="font-weight-light">
+                                Ser dominicano y mayor de 18 años
+                              </label>
+                            </Col>
+                          </Row>
+                        </Col>
+                      </Row>
+                    </Col>
                   </Row>
                 </Col>
               </>

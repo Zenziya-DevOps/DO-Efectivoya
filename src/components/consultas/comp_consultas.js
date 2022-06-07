@@ -1,19 +1,11 @@
 import React, { Component } from "react"
-import {
-  Accordion,
-  Card,
-  Button,
-  Container,
-  Navbar,
-  Row,
-  Col,
-} from "react-bootstrap"
+import { Accordion, Button, Container, Row, Col } from "react-bootstrap"
 import { label_ } from "../../styles/leters"
 import { Btn_ } from "../../styles/bottom"
 import "../../css/preguntas.css"
 import * as constant from "../../constants"
 
-const assets = process.env.REACT_APP_ASSETS
+import bk_3 from "../../images/bk_3.svg"
 const land = process.env.REACT_APP_LAND
 
 export class COMP_Consultas extends Component {
@@ -30,7 +22,7 @@ export class COMP_Consultas extends Component {
       <>
         <div
           style={{
-            backgroundImage: `url(${assets}/bk_3.svg)`,
+            backgroundImage: `url(${bk_3})`,
             backgroundSize: "cover",
             backgroundPosition: "top , rigth",
             backgroundRepeat: "no-repeat",
