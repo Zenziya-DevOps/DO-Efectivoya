@@ -69,7 +69,7 @@ export const COMPMobile = () => {
           </Col>
 
           <Col xs={6} className="text-right">
-            <a href="./">
+            <a href="/">
               <img src={`${close}`} className="img img-fluid" id="xclos" />
             </a>
           </Col>
@@ -107,7 +107,7 @@ export const COMPMobile = () => {
 
         <Row className="mt-5 pt-5">
           <Col>
-            <Button variant="contained" className="btn-block">
+            <Button variant="contained" className="btn-block btn-zz">
               Continuar
             </Button>
           </Col>

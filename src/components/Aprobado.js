@@ -19,7 +19,7 @@ export const Aprobado = () => {
           </Col>
 
           <Col xs={6} className="text-right">
-            <a href="./">
+            <a href="/">
               <img src={`${close}`} className="img img-fluid" id="xclos" />
             </a>
           </Col>

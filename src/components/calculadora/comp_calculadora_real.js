@@ -148,7 +148,7 @@ const CalculadoraReal = () => {
         </Box>
         <Box className="text-center" mb={2} mt={3}>
           <div
-            className="fs-24"
+            className="fs-22"
             dangerouslySetInnerHTML={{ __html: mensajeCuota }}
           />
         </Box>

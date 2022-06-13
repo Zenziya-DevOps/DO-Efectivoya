@@ -22,7 +22,7 @@ export const Desaprobado = () => {
           </Col>
 
           <Col xs={6} className="text-right">
-            <a href="./">
+            <a href="/">
               <img src={`${close}`} className="img img-fluid" id="xclos" />
             </a>
           </Col>
@@ -43,7 +43,7 @@ export const Desaprobado = () => {
         }}
       >
         <Row>
-          <Col className="mt-3">
+          <Col className="mt-5 mb-3">
             <Typography paragraph={true} className="">
               Algunas recomendaciones:
             </Typography>
