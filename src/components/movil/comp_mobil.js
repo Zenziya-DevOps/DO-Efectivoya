@@ -1,300 +1,139 @@
-import React, { Component } from "react"
-import { Process, ProcessRealURL } from "../../services/process"
-import { Box_, Input_ } from "../../styles/Box"
-import { Btn_ } from "../../styles/bottom"
-import { label_ } from "../../styles/leters"
-import { Steps_ } from "../../styles/steps"
-import { Container, Row, Col, Button, Spinner, Form } from "react-bootstrap"
-import ReactDOM from "react-dom"
-import { colors } from "../../styles/colors"
-import { mobile } from "../../model/mobile"
-import { client } from "../../model/client"
-import { Key } from "../../model/Key"
-import { next_step } from "../../services/onboring"
+import React, { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
+import { useHistory } from "react-router-dom"
+import ico from "../../images/ico.svg"
+import close from "../../images/close.svg"
+import { Typography } from "@mui/material"
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline"
+import { Container, Row, Col } from "react-bootstrap"
+import {
+  Dialog,
+  Button,
+  DialogContent,
+  DialogTitle,
+  DialogContentText,
+  DialogActions,
+} from "@mui/material"
+import TextField from "@mui/material/TextField"
+import InfoIcon from "@mui/icons-material/Info"
 import { Trace } from "../../model/trace"
 import "../../css/placeholder.css"
 import interaccionesService from "../../services/interacciones"
 import { keyOrigen } from "../../constants"
 import { step } from "../../constants"
 import Countdown from "react-countdown"
+import bk from "../../images/bk.svg"
 
 import acceptz from "../../images/acceptz.svg"
 import accept from "../../images/accept.svg"
 import error from "../../images/error.svg"
 
-const redirect = () => {
-  interaccionesService.interacciones({
-    step: step.INSERTA_TELEFONO_AUTOMATICO,
-    value: mobile.Telefono,
-    KeyOrigen: keyOrigen,
-    idCookie: localStorage.getItem("cookie"),
-    timeStamp: new Date(),
-  })
-  Process(Trace, "Log")
+export const COMPMobile = () => {
+  const history = useHistory()
+  const location = useLocation()
+  const [open, setOpen] = useState(false)
 
-  next_step()
-}
+  useEffect(() => {
+    if (!location.state) history.push("/")
+  }, [])
 
-export class COMPMobile extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isValidCode: false,
-      clickContinueButton: false,
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const sendSms = (e) => {
+    const celular = e.target.value
+    if (celular.length === 10) {
+      const otp = 1234
+      history.push({
+        pathname: `/validacion_otp_resultado`,
+        state: { celular, otp, credito: location.state.credito },
+      })
     }
-
-    this.onRenderer = this.onRenderer.bind(this)
-  }
-  componentDidMount() {
-    Trace.Telefono = true
-    Process(Trace, "Log")
-  }
-  async onSubmitCode() {
-    interaccionesService.interacciones({
-      step: step.INSERTA_TELEFONO,
-      value: mobile.Telefono,
-      KeyOrigen: keyOrigen,
-      idCookie: localStorage.getItem("cookie"),
-      timeStamp: new Date(),
-    })
-    Process(Trace, "Log")
-    next_step()
   }
 
-  onRenderer({ seconds, api }) {
-    if (!this.state.isValidCode) {
-      api.stop()
-    }
+  return (
+    <>
+      <Container
+        style={{
+          backgroundColor: "#3A68AD",
+        }}
+      >
+        <Row className="pt-3 pb-3">
+          <Col xs={6} className="text-left">
+            <img src={`${ico}`} style={{ width: "195px" }} />
+          </Col>
 
-    if (this.state.clickContinueButton) {
-      api.stop()
-    }
+          <Col xs={6} className="text-right">
+            <a href="./">
+              <img src={`${close}`} className="img img-fluid" id="xclos" />
+            </a>
+          </Col>
+        </Row>
+      </Container>
+      <Container className="pt-3 pb-1">
+        <Row>
+          <Col xs={12}>
+            <Typography className="title" paragraph={true}>
+              Número de celular
+            </Typography>
+            <Typography>Te vamos a enviar un código por sms</Typography>
+          </Col>
+        </Row>
 
-    return (
-      <label style={label_(1, 0, "0.8em", 0, "normal", "0.9rem")}>
-        En {seconds} segundos avanza al próximo paso
-      </label>
-    )
-  }
+        <Row>
+          <Col xs={12} className="pt-3 pb-4">
+            <span onClick={handleClickOpen} className="violet">
+              <HelpOutlineIcon /> ¿Por qué lo pedimos?
+            </span>
+          </Col>
+        </Row>
 
-  render() {
-    return (
-      <>
-        <div id="e">
-          <Container className="pt-3 ">
-            <Row className="d-flex justify-content-center">
-              <label style={Steps_(2)}>
-                <img
-                  src={`${acceptz}`}
-                  className="img img-fluid"
-                  style={{ width: "11px" }}
-                />{" "}
-              </label>
-              <label style={Steps_(2)}>Paso 2</label>
-              <label style={Steps_(1)}> </label>
-            </Row>
-          </Container>
+        <Row>
+          <Col>
+            <TextField
+              type="number"
+              maxLength="11"
+              label="Número de celular"
+              className="w100p"
+              onChange={sendSms}
+            />
+          </Col>
+        </Row>
 
-          {/* Form */}
-          <Container>
-            <Row className="p-3">
-              <Col xs={12} className="pt-3 text-center">
-                <label
-                  className="font-weight-bold"
-                  style={label_(0, 0, "18px", "center")}
-                >
-                  Ingresa tu número de celular
-                </label>
-              </Col>
-
-              <Col xs={12} className="pt-3">
-                <label
-                  className="font-weight-bold"
-                  style={label_(0, 0, "14px")}
-                >
-                  Número de celular{" "}
-                  <label
-                    className="font-weight-normal"
-                    style={label_(1, 0, "10px")}
-                  >
-                    {" "}
-                    sin espacios ni guiones
-                  </label>
-                </label>
-              </Col>
-
-              <Col style={{ marginTop: "-8px" }}>
-                <input
-                  id="txtmobil"
-                  type="text"
-                  maxLength="10"
-                  placeholder="Ingresa tu número de celular de 10 dígitos"
-                  style={Input_(1, 4)}
-                  onChange={
-                    (this.HndMobil = async (e) => {
-                      const re = /^[0-9\b]+$/
-                      if (re.test(e.target.value)) {
-                        document.getElementById(e.target.id).value =
-                          e.target.value
-
-                        e.preventDefault()
-
-                        document.getElementById("txtmobil").style.borderColor =
-                          colors[2]
-
-                        if (/[a-zA-Z- ]/g.exec(e.target.value) != null) {
-                          ReactDOM.render(
-                            <img
-                              src={`${error}`}
-                              className="img img-fluid"
-                              style={{
-                                display: "block",
-                                width: "10px",
-                                margin: "4px 0 0 20px",
-                              }}
-                              id="SpEr"
-                            />,
-                            document.getElementById("lblele")
-                          )
-                          document.getElementById(
-                            "txtmobil"
-                          ).style.borderColor = colors[7]
-
-                          ReactDOM.render(
-                            <p id="lblmessage">
-                              <label style={label_(5, 0, "10px")}>
-                                No pudimos validar tu número celular, por favor
-                                verifica haberlo ingresado correctamente y
-                                vuelve a intentarlo
-                              </label>
-                            </p>,
-                            document.getElementById("lblmessage")
-                          )
-                        } else {
-                          ReactDOM.render(
-                            <i id="lblele"></i>,
-                            document.getElementById("lblele")
-                          )
-
-                          ReactDOM.render(
-                            <p id="lblmessage">
-                              <label style={label_(2, 0, "10px")}>
-                                No te preocupes, tus datos están protegidos!
-                              </label>
-                              <p style={label_(1, 0, "10px")}>
-                                Necesitamos tu cédula para consultar bases de
-                                datos financieras y obtener tu puntaje
-                                crediticio. Si está todo en orden, aprobamos tu
-                                solicitud de crédito.
-                              </p>
-                            </p>,
-                            document.getElementById("lblmessage")
-                          )
-
-                          if (e.target.value.length === 10) {
-                            ReactDOM.render(
-                              <Spinner
-                                className="font-weight-light spinner-border spinner-border-sm"
-                                animation="border"
-                                role="status"
-                                style={{
-                                  display: "block",
-                                  margin: "4px 0 0 15px",
-                                }}
-                                id="lblele"
-                              />,
-                              document.getElementById("lblele")
-                            )
-
-                            mobile.Telefono = e.target.value
-                            mobile.Identificacion = client.DocumentNumber
-                            mobile.KeyOrigen = Key.KeyOrigen
-
-                            let response = await ProcessRealURL(
-                              mobile,
-                              "Movil/SendCodeAccess"
-                            )
-
-                            mobile.access = response[0].Pin
-                            ReactDOM.render(
-                              <img
-                                src={`${accept}`}
-                                className="img img-fluid"
-                                style={{ display: "block" }}
-                                id="lblele"
-                              />,
-                              document.getElementById("lblele")
-                            )
-                            this.setState({ isValidCode: true })
-                          } else {
-                            this.setState({ isValidCode: false })
-                          }
-                        }
-                      } else {
-                        if (e.target.value.length > 1)
-                          document.getElementById(e.target.id).value = document
-                            .getElementById(e.target.id)
-                            .value.slice(0, -1)
-                        else document.getElementById(e.target.id).value = ""
-                      }
-                    })
-                  }
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    left: "calc(100% - 4em)",
-                    top: "0.5em",
-                    color: `${colors[2]}`,
-                  }}
-                >
-                  <i id="lblele"></i>
-                </div>
-              </Col>
-
-              <Col xs={12}>
-                <label style={label_(1, 0, "10px")}>Ejemplo: 8290556472</label>
-              </Col>
-
-              <Col xs={12} className="pt-3">
-                <p id="lblmessage">
-                  <label style={label_(2, 0, "10px")}>
-                    No te preocupes, tus datos están protegidos!
-                  </label>
-                  <p style={label_(1, 0, "8px")}>
-                    Necesitamos tu celular para consultar bases de datos
-                    financieras y obtener tu puntaje crediticio. Si está todo en
-                    orden, aprobamos tu solicitud de crédito.
-                  </p>
-                </p>
-              </Col>
-              <Col xs={12} className="text-center">
-                <button
-                  style={Btn_(
-                    2,
-                    2,
-                    3,
-                    "100%",
-                    null,
-                    this.state.isValidCode ? "inherit" : 0.3
-                  )}
-                  disabled={!this.state.isValidCode}
-                  onClick={this.onSubmitCode}
-                >
-                  Continuar
-                </button>
-                {this.state.isValidCode && (
-                  <Countdown
-                    date={Date.now() + 3000}
-                    renderer={this.onRenderer}
-                    onComplete={redirect}
-                  />
-                )}
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      </>
-    )
-  }
+        <Row className="mt-5 pt-5">
+          <Col>
+            <Button variant="contained" className="btn-block">
+              Continuar
+            </Button>
+          </Col>
+        </Row>
+      </Container>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle
+          style={{ cursor: "move" }}
+          id="draggable-dialog-title"
+          className="text-center"
+        >
+          <InfoIcon />
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText className="text-center fs-25">
+            ¿Por qué te pedimos tu celu?
+          </DialogContentText>
+          <DialogContentText className="text-center mt-3">
+            Necesitamos tu número de celu para poder comunicarte novedades sobre
+            tu préstamo.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Entendido</Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  )
 }

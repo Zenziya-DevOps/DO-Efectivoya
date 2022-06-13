@@ -1,13 +1,13 @@
 import React, { Component } from "react"
-import { colors } from "../../styles/colors"
+import { colors } from "../../../styles/colors"
 import { Container, Row, Col } from "react-bootstrap"
-import { label_ } from "../../styles/leters"
-import logo_asociacion from "./../../images/adofintech_logo.png"
-import { device } from "../../model/device"
-import efectivoya__ from "../../images/efectivoya__.svg"
-import efectivoya_ from "../../images/efectivoya_.svg"
-import facebook from "../../images/facebook.svg"
-import instagram from "../../images/instagram.svg"
+import { label_ } from "../../../styles/leters"
+import logo_asociacion from "./../../../images/adofintech_logo.png"
+import { device } from "../../../model/device"
+import efectivoya__ from "../../../images/efectivoya__.svg"
+import efectivoya_ from "../../../images/efectivoya_.svg"
+import facebook from "../../../images/facebook.svg"
+import instagram from "../../../images/instagram.svg"
 
 const land = process.env.REACT_APP_LAND
 

@@ -1,11 +1,11 @@
 import React, { Component } from "react"
 import { Accordion, Button, Container, Row, Col } from "react-bootstrap"
-import { label_ } from "../../styles/leters"
-import { Btn_ } from "../../styles/bottom"
-import "../../css/preguntas.css"
-import * as constant from "../../constants"
+import { label_ } from "../../../styles/leters"
+import { Btn_ } from "../../../styles/bottom"
+import "../../../css/preguntas.css"
+import * as constant from "../../../constants"
 
-import bk_3 from "../../images/bk_3.svg"
+import bk_3 from "../../../images/bk_3.svg"
 const land = process.env.REACT_APP_LAND
 
 export class COMP_Consultas extends Component {

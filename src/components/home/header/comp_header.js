@@ -1,14 +1,14 @@
 import React, { Component } from "react"
 import { Row, Container, Col } from "react-bootstrap"
-import { label_ } from "../../styles/leters"
-import { COMPCalculadoras } from "../../components/calculadora/comp_calculadora"
-import { device } from "../../model/device"
+import { label_ } from "../../../styles/leters"
+import { COMPCalculadoras } from "../../../components/calculadora/comp_calculadora"
+import { device } from "../../../model/device"
 import Burger from "./Nav/Burger"
 import { Youtube } from "react-bootstrap-icons"
-import * as constant from "../../constants"
-import imagenCarrousel from "./../../images/EFECTIVO-YO-700png.png"
-import bk_0 from "../../images/bk_0.svg"
-import ico from "../../images/ico.svg"
+import * as constant from "../../../constants"
+import imagenCarrousel from "./../../../images/EFECTIVO-YO-700png.png"
+import bk_0 from "../../../images/bk_0.svg"
+import ico from "../../../images/ico.svg"
 
 export class COMP_Header extends Component {
   render() {
@@ -24,7 +24,7 @@ export class COMP_Header extends Component {
           }}
         >
           <Container fluid>
-            <Row className="p-3 my-auto mb-4 rounded shadow">
+            <Row className="p-3 my-auto mb-4 rounded">
               {device.device.type === "desktop" ? (
                 <>
                   <Col>
@@ -66,7 +66,7 @@ export class COMP_Header extends Component {
               )}
             </Row>
 
-            <Row className="pt-5">
+            <Row className="pt-1">
               {device.device.type === "desktop" ? (
                 <>
                   <Col
@@ -91,7 +91,7 @@ export class COMP_Header extends Component {
                     </label>
                     <label style={label_(3, 0, "1em")}>
                       <label className="mt-1 mb-0">
-                        ¡Obtén hasta RD$ 10,000!
+                        ¡Obtén hasta RD$ 30,000!
                       </label>
                       <label className="mb-0">
                         Aprobación inmediata, sin papeleo,
@@ -113,20 +113,18 @@ export class COMP_Header extends Component {
                 </>
               ) : (
                 <>
-                  <Col xs={device.device.type === "desktop" ? 4 : 12}>
+                  <Col xs={12} className="my-auto text-center pt-3 pb-3">
+                    <label style={label_(3, 0, "25px")}>
+                      El préstamo para <br /> todo lo que quieres <br />{" "}
+                      <span style={{ color: "#00D1FF" }}>¡ya!</span>
+                    </label>
+                  </Col>
+
+                  <Col xs={12}>
                     <COMPCalculadoras />
                   </Col>
 
-                  <Col
-                    xs={device.device.type === "desktop" ? 4 : 12}
-                    className="my-auto text-center pt-3"
-                  >
-                    <label
-                      className="font-weight-bold"
-                      style={label_(3, 0, "30px")}
-                    >
-                      El préstamo para cumplir todos tus planes.
-                    </label>
+                  <Col xs={12} className="my-auto text-center pt-3">
                     <label style={label_(3, 0, "17px")}>
                       <label className="mt-1 mb-0">
                         ¡Obtén hasta RD$ 10,000!

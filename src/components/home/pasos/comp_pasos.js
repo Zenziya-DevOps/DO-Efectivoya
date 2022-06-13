@@ -1,12 +1,11 @@
 import React, { Component } from "react"
-import { label_ } from "../../styles/leters"
+import { label_ } from "../../../styles/leters"
 import { Container, Row, Col } from "react-bootstrap"
-import { device } from "../../model/device"
-import * as constant from "../../constants"
-import bk_2 from "../../images/bk_2.svg"
-import pass_1 from "../../images/pass_1.svg"
-import pass_2 from "../../images/pass_2.svg"
-import pass_3 from "../../images/pass_3.svg"
+import { device } from "../../../model/device"
+import bk_2 from "../../../images/bk_2.svg"
+import pass_1 from "../../../images/pass_1.svg"
+import pass_2 from "../../../images/pass_2.svg"
+import pass_3 from "../../../images/pass_3.svg"
 
 export class COMP_Pasos extends Component {
   render() {

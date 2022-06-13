@@ -1,10 +1,10 @@
 import React, { Component } from "react"
-import { label_ } from "../../styles/leters"
+import { label_ } from "../../../styles/leters"
 import { Container, Row, Col } from "react-bootstrap"
-import { device } from "../../model/device"
-import pass_4 from "../../images/pass_4.svg"
-import pass_5 from "../../images/pass_5.svg"
-import pass_6 from "../../images/pass_6.svg"
+import { device } from "../../../model/device"
+import pass_4 from "../../../images/pass_4.svg"
+import pass_5 from "../../../images/pass_5.svg"
+import pass_6 from "../../../images/pass_6.svg"
 
 export class COMP_Requisitos extends Component {
   render() {

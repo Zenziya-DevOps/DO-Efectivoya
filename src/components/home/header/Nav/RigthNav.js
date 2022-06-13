@@ -1,11 +1,11 @@
 import React from "react"
 import styled from "styled-components"
-import { colors } from "../../../styles/colors"
-import { label_ } from "../../../styles/leters"
-import pf from "../../../images/pf.svg"
-import cc from "../../../images/cc.svg"
-import cp from "../../../images/cp.svg"
-import rq from "../../../images/rq.svg"
+import { colors } from "../../../../styles/colors"
+import { label_ } from "../../../../styles/leters"
+import pf from "../../../../images/pf.svg"
+import cc from "../../../../images/cc.svg"
+import cp from "../../../../images/cp.svg"
+import rq from "../../../../images/rq.svg"
 
 const Ul = styled.ul`
   display: inline-block;

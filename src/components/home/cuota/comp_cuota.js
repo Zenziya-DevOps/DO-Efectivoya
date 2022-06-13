@@ -1,8 +1,8 @@
 import React, { Component } from "react"
-import { label_ } from "../../styles/leters"
+import { label_ } from "../../../styles/leters"
 import { Container, Row, Col } from "react-bootstrap"
-import { device } from "../../model/device"
-import bk_4 from "../../images/bk_4.svg"
+import { device } from "../../../model/device"
+import bk_4 from "../../../images/bk_4.svg"
 
 export class COMP_Cuotas extends Component {
   render() {

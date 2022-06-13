@@ -1,24 +1,25 @@
-import React, { Component, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Process } from "../../services/process"
-import { Input_ } from "../../styles/Box"
-import { Btn_ } from "../../styles/bottom"
-import { label_ } from "../../styles/leters"
-import { Steps_ } from "../../styles/steps"
-import { Container, Row, Col, Button, Spinner, Form } from "react-bootstrap"
-import ReactDOM from "react-dom"
-import { colors } from "../../styles/colors"
-import { client } from "../../model/client"
-import { Key } from "../../model/Key"
+import { Typography } from "@mui/material"
+import { Container, Row, Col } from "react-bootstrap"
 import { Trace } from "../../model/trace"
 import interaccionesService from "../../services/interacciones"
-import { next_step } from "../../services/onboring"
-import { device_m } from "../../model/device"
 import { keyOrigen } from "../../constants"
 import { step } from "../../constants"
 import { cookieValidator } from "../../helpers/cookieValidator"
+import { useParams, useHistory } from "react-router-dom"
 import Countdown from "react-countdown"
-import accept from "../../images/accept.svg"
-import error from "../../images/error.svg"
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline"
+import TextField from "@mui/material/TextField"
+import InfoIcon from "@mui/icons-material/Info"
+import {
+  Dialog,
+  Button,
+  DialogContent,
+  DialogTitle,
+  DialogContentText,
+  DialogActions,
+} from "@mui/material"
 
 const esCedulaValida = (cedula) => {
   cedula = cedula.replace(/-/g, "").padStart(11, "0")
@@ -52,337 +53,143 @@ const esCedulaValida = (cedula) => {
     cedula_sin_digito_verificador.substr(0, 3) != "000"
   )
 }
-const redirect = () => {
-  interaccionesService.interacciones({
-    step: step.VALIDA_IDENTIFICACION_AUTOMATICO,
-    value: client.DocumentNumber,
-    KeyOrigen: keyOrigen,
-    idCookie: localStorage.getItem("cookie"),
-    timeStamp: new Date(),
-  })
 
-  next_step()
-}
+export const COMPIdentification = () => {
+  let { monto } = useParams()
+  let history = useHistory()
+  const [isValidCode, setIsValidCode] = useState(false)
+  const [cedula, setCedula] = useState(0)
+  const [open, setOpen] = useState(false)
 
-export class COMPIdentification extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      clickContinueButton: false,
-    }
-
-    this.onRenderer = this.onRenderer.bind(this)
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     cookieValidator()
     Trace.Ofert = true
     Trace.Identificacion = true
     Process(Trace, "Log")
-  }
+  }, [])
 
-  onRenderer({ seconds, api }) {
-    if (this.state.clickContinueButton) {
-      api.stop()
+  const handleChangeDocument = async (e) => {
+    const { value } = e.target
+
+    if (value.length > 8) {
+      interaccionesService.interacciones({
+        step: step.INGRESA_IDENTIFICACION,
+        value: value,
+        KeyOrigen: keyOrigen,
+        idCookie: localStorage.getItem("cookie"),
+        timeStamp: new Date(),
+      })
+
+      if (!esCedulaValida(value)) {
+        interaccionesService.interacciones({
+          step: step.IDENTIFICACION_INVALIDA,
+          value: value,
+          KeyOrigen: keyOrigen,
+          idCookie: localStorage.getItem("cookie"),
+          timeStamp: new Date(),
+        })
+      } else {
+        interaccionesService.interacciones({
+          step: step.VALIDA_IDENTIFICACION,
+          value: value,
+          KeyOrigen: keyOrigen,
+          idCookie: localStorage.getItem("cookie"),
+          timeStamp: new Date(),
+        })
+
+        setIsValidCode(true)
+        setCedula(value)
+      }
     }
-
-    return (
-      <label style={label_(1, 0, "0.8em", 0, "normal", "0.9rem")}>
-        En {seconds} segundos avanza al próximo paso
-      </label>
-    )
   }
 
-  render() {
-    return (
-      <div id="e">
-        {/* paso 1 */}
-        <Container className="pt-3 ">
-          <Row className="d-flex justify-content-center">
-            <label style={Steps_(2)}>Paso 1</label>
-            <label style={Steps_(1)}> </label>
-            <label style={Steps_(1)}> </label>
-          </Row>
-        </Container>
-
-        <Container className="pt-3 pb-1">
-          <Row>
-            <Col xs={12} className="pt-3 text-center">
-              <label
-                className="font-weight-bold"
-                style={label_(0, 0, "18px", "center")}
-              >
-                Ingresa tu cédula
-              </label>
-            </Col>
-
-            <Col xs={12} className="pt-3">
-              <label
-                style={label_(0, 0, "14px")}
-                className="ml-1 font-weight-bold"
-              >
-                Número de cédula{" "}
-                <label
-                  style={label_(1, 0, "10px")}
-                  className="font-weight-normal"
-                >
-                  {" "}
-                  sin espacios ni guiones
-                </label>
-              </label>
-            </Col>
-
-            <Col xs={12}>
-              <span>
-                <input
-                  id="txtnumber"
-                  type="text"
-                  maxLength="11"
-                  placeholder="Ingresa tu número de cédula de 10 dígitos"
-                  style={Input_(1, 4)}
-                  onChange={
-                    (this.valhd = async (e) => {
-                      const re = /^[0-9\b]+$/
-                      if (re.test(e.target.value)) {
-                        document.getElementById(e.target.id).value =
-                          e.target.value
-
-                        e.preventDefault()
-                        var cedula = e.target.value
-                        document.getElementById("txtnumber").style.borderColor =
-                          colors[2]
-
-                        if (/[a-zA-Z- ]/g.exec(cedula) != null) {
-                          ReactDOM.render(
-                            <img
-                              src={`${error}`}
-                              className="img img-fluid"
-                              style={{
-                                display: "block",
-                                width: "10px",
-                                margin: "4px 0 0 14px",
-                              }}
-                              id="SpEr"
-                            />,
-                            document.getElementById("lblele")
-                          )
-                          document.getElementById(
-                            "txtnumber"
-                          ).style.borderColor = colors[7]
-
-                          ReactDOM.render(
-                            <p id="lblmessage">
-                              <label style={label_(5, 0, "10px")}>
-                                No pudimos validar tu cédula, por favor verifica
-                                haberla ingresado correctamente y vuelve a
-                                intentarlo
-                              </label>
-                            </p>,
-                            document.getElementById("lblmessage")
-                          )
-                        } else {
-                          ReactDOM.render(
-                            <i id="lblele"></i>,
-                            document.getElementById("lblele")
-                          )
-
-                          ReactDOM.render(
-                            <p id="lblmessage">
-                              <label style={label_(2, 0, "10px")}>
-                                No te preocupes, tus datos están protegidos!
-                              </label>
-                              <p style={label_(1, 0, "10px")}>
-                                Necesitamos tu cédula para consultar bases de
-                                datos financieras y obtener tu puntaje
-                                crediticio. Si está todo en orden, aprobamos tu
-                                solicitud de crédito.
-                              </p>
-                            </p>,
-                            document.getElementById("lblmessage")
-                          )
-
-                          if (cedula.length > 8) {
-                            ReactDOM.render(
-                              <Spinner
-                                className="font-weight-light spinner-border spinner-border-sm"
-                                animation="border"
-                                role="status"
-                                style={{
-                                  display: "block",
-                                  margin: "4px 0 0 14px",
-                                }}
-                                id="lblele"
-                              />,
-                              document.getElementById("lblele")
-                            )
-
-                            await new Promise((r) => setTimeout(r, 1000))
-
-                            client.DocumentNumber = cedula
-                            client.KeyOrigen = Key.KeyOrigen
-
-                            interaccionesService.interacciones({
-                              step: step.INGRESA_IDENTIFICACION,
-                              value: client.DocumentNumber,
-                              KeyOrigen: keyOrigen,
-                              idCookie: localStorage.getItem("cookie"),
-                              timeStamp: new Date(),
-                            })
-
-                            if (esCedulaValida(cedula)) {
-                              client.Valid = true
-
-                              document.getElementById(
-                                "txtnumber"
-                              ).style.borderColor = colors[6]
-
-                              ReactDOM.render(
-                                <img
-                                  src={`${accept}`}
-                                  className="img img-fluid"
-                                  style={{
-                                    display: "block",
-                                    width: "10px",
-                                    margin: "4px 0 0 14px",
-                                  }}
-                                  id="lblele"
-                                />,
-                                document.getElementById("lblele")
-                              )
-
-                              device_m.mp_Identification = client.DocumentNumber
-
-                              Process(device_m, "/SetDevices?acc=0")
-
-                              Trace.Valida_Identificacion = true
-                              Trace.N_Identificacion = client.DocumentNumber
-                              Process(Trace, "Log")
-
-                              ReactDOM.render(
-                                <div id="lblmessage">
-                                  <Form
-                                    onSubmit={
-                                      (this.handleSubmit = (e) => {
-                                        e.preventDefault()
-
-                                        interaccionesService.interacciones({
-                                          step: step.VALIDA_IDENTIFICACION,
-                                          value: client.DocumentNumber,
-                                          KeyOrigen: keyOrigen,
-                                          idCookie:
-                                            localStorage.getItem("cookie"),
-                                          timeStamp: new Date(),
-                                        })
-                                        next_step()
-                                      })
-                                    }
-                                  >
-                                    <Row>
-                                      <Col xs={12} className="text-center">
-                                        <p style={{ color: "rgb(0, 0, 100)" }}>
-                                          ¡Perfecto! Tu cédula es correcta
-                                        </p>
-                                      </Col>
-                                      <Col xs={12} className="pt-3 text-center">
-                                        <Button
-                                          className="font-weight-bold"
-                                          type="submit"
-                                          id="paso2"
-                                          style={Btn_(2, 2, 3, "100%")}
-                                          onClick={() =>
-                                            this.setState({
-                                              clickContinueButton: true,
-                                            })
-                                          }
-                                        >
-                                          Continuar
-                                        </Button>
-                                        <Countdown
-                                          date={Date.now() + 3000}
-                                          renderer={this.onRenderer}
-                                          onComplete={redirect}
-                                        />
-                                      </Col>
-                                    </Row>
-                                  </Form>
-                                </div>,
-                                document.getElementById("lblmessage")
-                              )
-                            } else {
-                              client.Valid = false
-
-                              interaccionesService.interacciones({
-                                step: step.IDENTIFICACION_INVALIDA,
-                                value: client.DocumentNumber,
-                                KeyOrigen: keyOrigen,
-                                idCookie: localStorage.getItem("cookie"),
-                                timeStamp: new Date(),
-                              })
-
-                              document.getElementById(
-                                "txtnumber"
-                              ).style.borderColor = colors[7]
-
-                              ReactDOM.render(
-                                <p id="lblmessage">
-                                  <label style={label_(5, 0, "10px")}>
-                                    No pudimos validar tu cédula, por favor
-                                    verifica haberla ingresado correctamente y
-                                    vuelve a intentarlo
-                                  </label>
-                                </p>,
-                                document.getElementById("lblmessage")
-                              )
-                            }
-
-                            ReactDOM.render(
-                              <i id="lblele"></i>,
-                              document.getElementById("lblele")
-                            )
-                          }
-                        }
-                      } else {
-                        if (e.target.value.length > 1)
-                          document.getElementById(e.target.id).value = document
-                            .getElementById(e.target.id)
-                            .value.slice(0, -1)
-                        else document.getElementById(e.target.id).value = ""
-                      }
-                    })
-                  }
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    left: "calc(100% - 4em)",
-                    top: "0.5em",
-                    color: `${colors[2]}`,
-                  }}
-                >
-                  <i id="lblele"></i>
-                </div>
-              </span>
-
-              <label className="text-left" style={label_(1, 0, "10px")}>
-                Ejemplo: 3456728394
-              </label>
-            </Col>
-
-            <Col xs={12} className="pt-1 pb-1">
-              <p id="lblmessage">
-                <label style={label_(2, 0, "10px")}>
-                  No te preocupes, tus datos están protegidos!
-                </label>
-                <p style={label_(1, 0, "8px")}>
-                  Necesitamos tu cédula para consultar bases de datos
-                  financieras y obtener tu puntaje crediticio. Si está todo en
-                  orden, aprobamos tu solicitud de crédito.
-                </p>
-              </p>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    )
+  const onRenderer = ({ seconds }) => {
+    return <label>En {seconds} segundos avanza al chat</label>
   }
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  return (
+    <>
+      <Container className="pt-3 pb-1">
+        <Row>
+          <Col xs={12}>
+            <Typography className="title">
+              Ingresa tu número de cédula
+            </Typography>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col xs={12} className="pt-3 pb-4">
+            <span onClick={handleClickOpen} className="violet">
+              <HelpOutlineIcon /> ¿Por qué lo pedimos?
+            </span>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <TextField
+              type="number"
+              maxLength="11"
+              label="Número de cédula"
+              onChange={handleChangeDocument}
+              className="w100p"
+            />
+          </Col>
+        </Row>
+
+        <Row className="mb-5 pb-5 mt-3 text-center">
+          <Col>
+            {isValidCode && (
+              <Countdown
+                date={Date.now() + 3000}
+                renderer={onRenderer}
+                onComplete={() => {
+                  history.push(`/oferta_real/${cedula}/${monto}`)
+                }}
+              />
+            )}
+          </Col>
+        </Row>
+        <Row className="mt-5 pt-5">
+          <Col>
+            <Button variant="contained" className="btn-block">
+              Continuar
+            </Button>
+          </Col>
+        </Row>
+      </Container>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle
+          style={{ cursor: "move" }}
+          id="draggable-dialog-title"
+          className="text-center"
+        >
+          <InfoIcon className="violet" />
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText className="text-center fs-22">
+            ¿Por qué te pedimos <br />
+            tu cédula?
+          </DialogContentText>
+          <DialogContentText className="text-center mt-4">
+            Necesitamos tu número de cédula para ver hasta cuánto podemos
+            prestarte.
+          </DialogContentText>
+          <Button onClick={handleClose} className="btn-zz btn-block mt-5">
+            Entendido
+          </Button>
+        </DialogContent>
+      </Dialog>
+    </>
+  )
 }
