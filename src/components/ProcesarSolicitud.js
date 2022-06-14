@@ -14,6 +14,8 @@ export const ProcesarSolicitud = () => {
   useEffect(() => {
     if (!location.state) history.push("/")
     const { credito } = location.state
+
+    debugger
   }, [])
 
   return (

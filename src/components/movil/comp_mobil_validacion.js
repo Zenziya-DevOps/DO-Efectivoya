@@ -24,8 +24,8 @@ export const OtpValidacion = () => {
     const otp = e.target.value
     if (otp == location.state.otp) {
       var { credito, celular } = location.state
-      credito.celular = celular
-      debugger
+      credito.Celular = celular
+      //debugger
       history.push({ pathname: `/procesar_solicitud`, state: { credito } })
     }
   }
@@ -83,7 +83,7 @@ export const OtpValidacion = () => {
 
         <Row className="mt-5 pt-5">
           <Col>
-            <Button variant="contained" className="btn-block btn-zz">
+            <Button variant="contained" className="btn-block btn-zz bottom">
               Continuar
             </Button>
           </Col>

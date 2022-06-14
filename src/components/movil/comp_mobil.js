@@ -20,7 +20,6 @@ import { Trace } from "../../model/trace"
 import "../../css/placeholder.css"
 import interaccionesService from "../../services/interacciones"
 import { keyOrigen } from "../../constants"
-import { step } from "../../constants"
 import Countdown from "react-countdown"
 import bk from "../../images/bk.svg"
 
@@ -107,7 +106,7 @@ export const COMPMobile = () => {
 
         <Row className="mt-5 pt-5">
           <Col>
-            <Button variant="contained" className="btn-block btn-zz">
+            <Button variant="contained" className="btn-block btn-zz bottom">
               Continuar
             </Button>
           </Col>

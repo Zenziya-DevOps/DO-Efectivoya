@@ -55,14 +55,6 @@ span.MuiSlider-thumb span.MuiSlider-valueLabel:before {
   display: none;
 }
 
-button.btn-zz {
-  color: #fff;
-  background-color: #6c63fb;
-  text-transform: none;
-  font-size: 16px;
-  padding: 6px 12px;
-}
-
 span.MuiSlider-root,
 .violet {
   color: #6c63fb;
@@ -81,4 +73,19 @@ span.MuiSlider-thumb {
 span.MuiSlider-track,
 span.MuiSlider-rail {
   height: 4px;
+}
+
+button.btn-zz {
+  color: #fff;
+  background-color: #6c63fb;
+  text-transform: none;
+  font-size: 16px;
+  padding: 6px 12px;
+  height: 60px;
+}
+
+.btn-zz.bottom {
+  position: fixed;
+  bottom: 10%;
+  width: 84%;
 }

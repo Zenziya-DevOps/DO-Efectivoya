@@ -71,9 +71,9 @@ const CalculadoraReal = () => {
     const response = await fetch("https://geolocation-db.com/json/")
     const data = await response.json()
 
-    credito.Frecuencia = frecuenciaCalculadora
-    credito.CantidadCuotas = plazoCalculadora
-    credito.Monto = montoCalculadora
+    credito.FrecuenciaSolicitada = frecuenciaCalculadora
+    credito.CantCuotasSolicitadas = plazoCalculadora
+    credito.MontoSolicitado = montoCalculadora
     credito.Cedula = cedula
     credito.Celular = null
     credito.Marca = device.device.brand

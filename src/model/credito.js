@@ -1,7 +1,7 @@
 var credito = {
-  Frecuencia: 123,
-  CantidadCuotas: null,
-  Monto: null,
+  FrecuenciaSolicitada: null,
+  CantCuotasSolicitadas: null,
+  MontoSolicitado: null,
   Cedula: null,
   Celular: null,
   Marca: null,
@@ -10,6 +10,7 @@ var credito = {
   IdCookie: null,
   IpConnection: null,
   TraceID: null,
+  Pais: "DO",
 }
 
 export default credito

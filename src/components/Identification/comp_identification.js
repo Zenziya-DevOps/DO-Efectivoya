@@ -161,7 +161,7 @@ export const COMPIdentification = () => {
         </Row>
         <Row className="mt-5 pt-5">
           <Col>
-            <Button variant="contained" className="btn-block btn-zz">
+            <Button variant="contained" className="btn-zz bottom">
               Continuar
             </Button>
           </Col>
