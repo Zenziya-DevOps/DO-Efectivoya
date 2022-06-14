@@ -41,6 +41,23 @@ export const OtpValidacion = () => {
     return <label>En {seconds} segundos avanza siguiente paso</label>
   }
 
+  const goToValidarOtp = () => {
+    var { credito } = location.state
+    history.push({
+      pathname: `/validacion_otp`,
+      state: { credito },
+    })
+  }
+
+  const execDoScoring = () => {
+    var { credito, celular } = location.state
+    credito.Celular = celular
+    history.push({
+      pathname: `/procesar_solicitud`,
+      state: { credito },
+    })
+  }
+
   return (
     <>
       <Container
@@ -86,7 +103,6 @@ export const OtpValidacion = () => {
                     borderRadius: "5px",
                     fontSize: "2rem",
                     letterSpacing: "10px",
-                    border: none,
                   },
                 }}
                 onChange={validateOtp}
@@ -103,27 +119,13 @@ export const OtpValidacion = () => {
                 <Countdown
                   date={Date.now() + 3000}
                   renderer={onRenderer}
-                  onComplete={() => {
-                    var { credito, celular } = location.state
-                    credito.Celular = celular
-                    //debugger
-                    history.push({
-                      pathname: `/procesar_solicitud`,
-                      state: { credito },
-                    })
-                  }}
+                  onComplete={execDoScoring}
                 />
               ) : (
                 <Button
                   variant="text"
                   className="btn-block violet"
-                  onClick={() => {
-                    var { credito } = location.state
-                    history.push({
-                      pathname: `/validacion_otp`,
-                      state: { credito },
-                    })
-                  }}
+                  onClick={goToValidarOtp}
                 >
                   Ingresar otro número de celular
                 </Button>
@@ -133,7 +135,11 @@ export const OtpValidacion = () => {
 
           <Row className="mt-5 pt-5">
             <Col>
-              <Button variant="contained" className="btn-block btn-zz bottom">
+              <Button
+                variant="contained"
+                className="btn-block btn-zz bottom"
+                onClick={execDoScoring}
+              >
                 Continuar
               </Button>
             </Col>

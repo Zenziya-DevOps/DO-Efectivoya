@@ -156,7 +156,6 @@ export const COMPIdentification = () => {
               inputProps={{
                 style: {
                   textAlign: "center",
-                  border: "none",
                 },
               }}
             />

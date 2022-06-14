@@ -52,6 +52,12 @@ export const COMPMobile = () => {
     return <label>En {seconds} segundos avanza siguiente paso</label>
   }
 
+  const goToValidarResultado = () => {
+    history.push({
+      pathname: `/validacion_otp_resultado`,
+      state: { celular, credito: location.state.credito },
+    })
+  }
   return (
     <>
       <Container
@@ -101,7 +107,6 @@ export const COMPMobile = () => {
                 inputProps={{
                   style: {
                     textAlign: "center",
-                    border: none,
                   },
                 }}
               />
@@ -114,12 +119,7 @@ export const COMPMobile = () => {
                 <Countdown
                   date={Date.now() + 3000}
                   renderer={onRenderer}
-                  onComplete={() => {
-                    history.push({
-                      pathname: `/validacion_otp_resultado`,
-                      state: { celular, credito: location.state.credito },
-                    })
-                  }}
+                  onComplete={goToValidarResultado}
                 />
               )}
             </Col>
@@ -127,7 +127,11 @@ export const COMPMobile = () => {
 
           <Row className="mt-5 pt-5">
             <Col>
-              <Button variant="contained" className="btn-block btn-zz bottom">
+              <Button
+                variant="contained"
+                className="btn-block btn-zz bottom"
+                onClick={goToValidarResultado}
+              >
                 Continuar
               </Button>
             </Col>
