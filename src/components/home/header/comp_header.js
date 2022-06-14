@@ -124,23 +124,15 @@ export class COMP_Header extends Component {
                     <COMPCalculadoras />
                   </Col>
 
-                  <Col xs={12} className="my-auto text-center pt-3">
-                    <label style={label_(3, 0, "17px")}>
-                      <label className="mt-1 mb-0">
-                        ¡Obtén hasta RD$ 10,000!
-                      </label>
-                      <label className="mb-0">
-                        Aprobación inmediata, sin papeleo,
-                      </label>
-                      <label className="mb-0">
-                        sólo con tu cédula y 100% online!
-                      </label>
-                      <label className="mb-0">
-                        <a style={{ color: "#fff" }} href="#youtubeVideo">
-                          <Youtube /> Ver cómo funciona
-                        </a>
-                      </label>
-                    </label>
+                  <Col xs={12} className="my-auto text-center pt-3 white fs-22">
+                    <p className="mt-1 mb-0">Te aprobamos al instante</p>
+                    <p className="mb-0">y sin papeleo</p>
+                    <p className="">¡Todo 100% online!</p>
+                    <p className="mb-0">
+                      <a style={{ color: "#fff" }} href="#youtubeVideo">
+                        <Youtube /> Ver cómo funciona
+                      </a>
+                    </p>
                   </Col>
 
                   <Col

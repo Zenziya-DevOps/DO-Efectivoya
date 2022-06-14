@@ -104,7 +104,7 @@ export const COMPIdentification = () => {
   }
 
   const onRenderer = ({ seconds }) => {
-    return <label>En {seconds} segundos avanza al chat</label>
+    return <label>En {seconds} segundos avanza siguiente paso</label>
   }
 
   const handleClickOpen = () => {
@@ -127,9 +127,9 @@ export const COMPIdentification = () => {
         </Row>
 
         <Row>
-          <Col xs={12} className="pt-3 pb-4">
+          <Col className="pt-3 pb-4">
             <span onClick={handleClickOpen} className="violet">
-              <HelpOutlineIcon /> ¿Por qué lo pedimos?
+              <HelpOutlineIcon className="fs-15" /> ¿Por qué lo pedimos?
             </span>
           </Col>
         </Row>
@@ -174,12 +174,14 @@ export const COMPIdentification = () => {
           id="draggable-dialog-title"
           className="text-center"
         >
-          <InfoIcon className="violet" />
+          <InfoIcon className="violet fs-30" />
         </DialogTitle>
         <DialogContent>
           <DialogContentText className="text-center fs-22">
-            ¿Por qué te pedimos <br />
-            tu cédula?
+            <b>
+              ¿Por qué te pedimos <br />
+              tu cédula?
+            </b>
           </DialogContentText>
           <DialogContentText className="text-center mt-4">
             Necesitamos tu número de cédula para ver hasta cuánto podemos

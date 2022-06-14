@@ -22,7 +22,9 @@ export const COMPCalculadoras = () => {
                 <p className="fs-22">¿Cuánto necesitas?</p>
 
                 <p style={{ color: "#6C63FB" }} className="fs-40">
-                  <b>RD ${monto}</b>
+                  <b>
+                    RD ${monto.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                  </b>
                 </p>
 
                 <Slider

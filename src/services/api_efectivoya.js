@@ -3,6 +3,7 @@ import axios from "axios"
 const base_url = process.env.REACT_APP_BASE_URI
 
 export const getCalculadoraReal = async (cedula) => {
+  alert("a")
   //   debugger
   //   const resp = await axios({
   //     url: `${base_url}/${cedula}`,

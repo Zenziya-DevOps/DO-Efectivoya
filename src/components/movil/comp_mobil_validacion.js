@@ -15,6 +15,7 @@ import Countdown from "react-countdown"
 export const OtpValidacion = () => {
   const history = useHistory()
   const location = useLocation()
+  const [isValidCode, setIsValidCode] = useState(false)
 
   useEffect(() => {
     if (!location.state) history.push("/")
@@ -23,11 +24,12 @@ export const OtpValidacion = () => {
   const validateOtp = (e) => {
     const otp = e.target.value
     if (otp == location.state.otp) {
-      var { credito, celular } = location.state
-      credito.Celular = celular
-      //debugger
-      history.push({ pathname: `/procesar_solicitud`, state: { credito } })
+      setIsValidCode(true)
     }
+  }
+
+  const onRenderer = ({ seconds }) => {
+    return <label>En {seconds} segundos avanza siguiente paso</label>
   }
 
   return (
@@ -50,52 +52,70 @@ export const OtpValidacion = () => {
         </Row>
       </Container>
       <Container className="pt-3 pb-1">
-        <Row>
-          <Col xs={12}>
-            <Typography className="title" paragraph={true}>
-              Te enviamos un código al {location.state.celular}
-            </Typography>
-            <Typography paragraph={true} className="mt-5">
-              Ingresalo aqui:
-            </Typography>
-          </Col>
-        </Row>
+        <Container>
+          <Row>
+            <Col xs={12}>
+              <Typography className="title" paragraph={true}>
+                Te enviamos un código al {location.state.celular}
+              </Typography>
+              <Typography paragraph={true} className="mt-5">
+                Ingrésalo aquí:
+              </Typography>
+            </Col>
+          </Row>
 
-        <Row>
-          <Col className="text-center">
-            <TextField
-              type="number"
-              maxLength="11"
-              className="w50p"
-              variant="standard"
-              inputProps={{
-                style: {
-                  textAlign: "center",
-                  borderRadius: "5px",
-                  fontSize: "2rem",
-                  letterSpacing: "10px",
-                },
-              }}
-              onChange={validateOtp}
-            />
-          </Col>
-        </Row>
+          <Row>
+            <Col className="text-center">
+              <TextField
+                type="number"
+                maxLength="11"
+                className="w50p"
+                variant="standard"
+                inputProps={{
+                  style: {
+                    textAlign: "center",
+                    borderRadius: "5px",
+                    fontSize: "2rem",
+                    letterSpacing: "10px",
+                  },
+                }}
+                onChange={validateOtp}
+              />
+            </Col>
+          </Row>
 
-        <Row className="mt-5 pt-5">
-          <Col>
-            <Button variant="contained" className="btn-block btn-zz bottom">
-              Continuar
-            </Button>
-          </Col>
-        </Row>
+          <Row className="mt-5 pt-5">
+            <Col>
+              <Button variant="contained" className="btn-block btn-zz bottom">
+                Continuar
+              </Button>
+            </Col>
+          </Row>
 
-        <Row className="mt-3">
-          <Col>
-            <Button variant="text" className="btn-block violet">
-              Ingresar otro número de celular
-            </Button>
-          </Col>
-        </Row>
+          <Row className="mt-3">
+            <Col className="text-center">
+              {isValidCode ? (
+                <Countdown
+                  date={Date.now() + 3000}
+                  renderer={onRenderer}
+                  onComplete={() => {
+                    var { credito, celular } = location.state
+                    credito.Celular = celular
+                    //debugger
+                    history.push({
+                      pathname: `/procesar_solicitud`,
+                      state: { credito },
+                    })
+                  }}
+                />
+              ) : (
+                <Button variant="text" className="btn-block violet">
+                  Ingresar otro número de celular
+                </Button>
+              )}
+            </Col>
+          </Row>
+        </Container>
       </Container>
     </>
   )

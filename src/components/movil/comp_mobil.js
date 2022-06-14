@@ -19,13 +19,7 @@ import InfoIcon from "@mui/icons-material/Info"
 import { Trace } from "../../model/trace"
 import "../../css/placeholder.css"
 import interaccionesService from "../../services/interacciones"
-import { keyOrigen } from "../../constants"
 import Countdown from "react-countdown"
-import bk from "../../images/bk.svg"
-
-import acceptz from "../../images/acceptz.svg"
-import accept from "../../images/accept.svg"
-import error from "../../images/error.svg"
 
 export const COMPMobile = () => {
   const history = useHistory()
@@ -74,43 +68,45 @@ export const COMPMobile = () => {
           </Col>
         </Row>
       </Container>
-      <Container className="pt-3 pb-1">
-        <Row>
-          <Col xs={12}>
-            <Typography className="title" paragraph={true}>
-              Número de celular
-            </Typography>
-            <Typography>Te vamos a enviar un código por sms</Typography>
-          </Col>
-        </Row>
+      <Container>
+        <Container className="pt-3">
+          <Row>
+            <Col>
+              <Typography className="title" paragraph={true}>
+                Número de celular
+              </Typography>
+              <Typography>Te vamos a enviar un código por sms</Typography>
+            </Col>
+          </Row>
 
-        <Row>
-          <Col xs={12} className="pt-3 pb-4">
-            <span onClick={handleClickOpen} className="violet">
-              <HelpOutlineIcon /> ¿Por qué lo pedimos?
-            </span>
-          </Col>
-        </Row>
+          <Row>
+            <Col className="pt-3 pb-4">
+              <span onClick={handleClickOpen} className="violet">
+                <HelpOutlineIcon className="fs-15" /> ¿Por qué lo pedimos?
+              </span>
+            </Col>
+          </Row>
 
-        <Row>
-          <Col>
-            <TextField
-              type="number"
-              maxLength="11"
-              label="Número de celular"
-              className="w100p"
-              onChange={sendSms}
-            />
-          </Col>
-        </Row>
+          <Row>
+            <Col>
+              <TextField
+                type="number"
+                maxLength="11"
+                label="Número de celular"
+                className="w100p"
+                onChange={sendSms}
+              />
+            </Col>
+          </Row>
 
-        <Row className="mt-5 pt-5">
-          <Col>
-            <Button variant="contained" className="btn-block btn-zz bottom">
-              Continuar
-            </Button>
-          </Col>
-        </Row>
+          <Row className="mt-5 pt-5">
+            <Col>
+              <Button variant="contained" className="btn-block btn-zz bottom">
+                Continuar
+              </Button>
+            </Col>
+          </Row>
+        </Container>
       </Container>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle
@@ -118,20 +114,22 @@ export const COMPMobile = () => {
           id="draggable-dialog-title"
           className="text-center"
         >
-          <InfoIcon />
+          <InfoIcon className="violet fs-30" />
         </DialogTitle>
         <DialogContent>
-          <DialogContentText className="text-center fs-25">
-            ¿Por qué te pedimos tu celu?
+          <DialogContentText className="text-center fs-22">
+            <b>
+              ¿Por qué te pedimos <br /> tu celu?
+            </b>
           </DialogContentText>
           <DialogContentText className="text-center mt-3">
             Necesitamos tu número de celu para poder comunicarte novedades sobre
             tu préstamo.
           </DialogContentText>
+          <Button onClick={handleClose} className="btn-zz btn-block mt-5">
+            Entendido
+          </Button>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Entendido</Button>
-        </DialogActions>
       </Dialog>
     </>
   )

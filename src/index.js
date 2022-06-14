@@ -4,13 +4,20 @@ import { Vw_OnBoarding } from "./layout/Onbording"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./styles.css"
 import "@fontsource/poppins"
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"
+import { ThemeProvider, createTheme } from "@mui/material/styles"
+
+const theme = createTheme({
+  body1: {
+    fontFamily: "Poppins",
+    color: "#455a64",
+  },
+})
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <ThemeProvider theme={theme}>
       <Vw_OnBoarding />
-    </BrowserRouter>
+    </ThemeProvider>
   )
 }
 

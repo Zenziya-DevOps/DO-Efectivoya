@@ -1,5 +1,5 @@
 p.title {
-  font-size: 33px;
+  font-size: 28px;
 }
 
 .w50p {
@@ -8,6 +8,11 @@ p.title {
 
 .w100p {
   width: 100%;
+}
+
+.fs-15,
+svg.fs-15 {
+  font-size: 15px;
 }
 
 .fs-22,
@@ -22,6 +27,15 @@ p.fs-24 {
 
 .fs-25 {
   font-size: 25px;
+}
+
+.fs-28 {
+  font-size: 28px;
+}
+
+svg.fs-30,
+.fs-30 {
+  font-size: 30px;
 }
 
 .fs-32 {
@@ -82,10 +96,18 @@ button.btn-zz {
   font-size: 16px;
   padding: 6px 12px;
   height: 60px;
+  border-radius: 10px;
 }
 
 .btn-zz.bottom {
   position: fixed;
   bottom: 10%;
   width: 84%;
+}
+
+.MuiTypography-body1,
+p.MuiTypography-body1,
+span.MuiTypography-body1,
+div.MuiTypography-body1 {
+  font-family: "Poppins";
 }
