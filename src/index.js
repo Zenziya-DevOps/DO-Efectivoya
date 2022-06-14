@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./styles.css"
 import "@fontsource/poppins"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { BrowserRouter } from "react-router-dom"
 
 const theme = createTheme({
   typography: {
@@ -17,9 +16,7 @@ const theme = createTheme({
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Vw_OnBoarding />
-      </BrowserRouter>
+      <Vw_OnBoarding />
     </ThemeProvider>
   )
 }
