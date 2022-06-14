@@ -109,10 +109,9 @@ export const COMPMobile = () => {
                   date={Date.now() + 3000}
                   renderer={onRenderer}
                   onComplete={() => {
-                    const otp = 1234
                     history.push({
                       pathname: `/validacion_otp_resultado`,
-                      state: { celular, otp, credito: location.state.credito },
+                      state: { celular, credito: location.state.credito },
                     })
                   }}
                 />

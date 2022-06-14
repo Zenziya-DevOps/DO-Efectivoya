@@ -7,24 +7,31 @@ import { Typography } from "@mui/material"
 import { Container, Row, Col } from "react-bootstrap"
 import { Button } from "@mui/material"
 import TextField from "@mui/material/TextField"
-import { Trace } from "../../model/trace"
+import { createOtp, otpVerification } from "./../../services/api_efectivoya"
 import "../../css/placeholder.css"
-import interaccionesService from "../../services/interacciones"
 import Countdown from "react-countdown"
 
 export const OtpValidacion = () => {
   const history = useHistory()
   const location = useLocation()
   const [isValidCode, setIsValidCode] = useState(false)
+  const [message, setMessage] = useState("")
 
-  useEffect(() => {
+  useEffect(async () => {
     if (!location.state) history.push("/")
+    var result = await createOtp(parseInt(location.state.celular))
+    if (result.des_respuesta !== "OK")
+      setMessage(
+        "Hubo un problema al enviar el SMS, por favor intente más tarde"
+      )
   }, [])
 
-  const validateOtp = (e) => {
+  const validateOtp = async (e) => {
     const otp = e.target.value
-    if (otp == location.state.otp) {
-      setIsValidCode(true)
+    if (otp.length === 4) {
+      const result = await otpVerification(location.state.celular, otp)
+
+      if (result.found) setIsValidCode(true)
     }
   }
 
@@ -66,21 +73,27 @@ export const OtpValidacion = () => {
 
           <Row>
             <Col className="text-center">
-              <TextField
-                type="number"
-                maxLength="11"
-                className="w50p"
-                variant="standard"
-                inputProps={{
-                  style: {
-                    textAlign: "center",
-                    borderRadius: "5px",
-                    fontSize: "2rem",
-                    letterSpacing: "10px",
-                  },
-                }}
-                onChange={validateOtp}
-              />
+              {message.length > 0 ? (
+                <Typography className="error" paragraph={true}>
+                  {message}
+                </Typography>
+              ) : (
+                <TextField
+                  type="number"
+                  maxLength="11"
+                  className="w50p"
+                  variant="standard"
+                  inputProps={{
+                    style: {
+                      textAlign: "center",
+                      borderRadius: "5px",
+                      fontSize: "2rem",
+                      letterSpacing: "10px",
+                    },
+                  }}
+                  onChange={validateOtp}
+                />
+              )}
             </Col>
           </Row>
 
