@@ -86,6 +86,7 @@ export const OtpValidacion = () => {
                     borderRadius: "5px",
                     fontSize: "2rem",
                     letterSpacing: "10px",
+                    border: none,
                   },
                 }}
                 onChange={validateOtp}

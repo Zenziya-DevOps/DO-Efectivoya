@@ -1,7 +1,6 @@
 p.title {
   font-size: 28px;
   font-weight: bold;
-  color: #455a64;
 }
 
 .w50p {
@@ -107,10 +106,10 @@ button.btn-zz {
   width: 84%;
 }
 
-.MuiTypography-body1,
-p.MuiTypography-body1,
-span.MuiTypography-body1,
-div.MuiTypography-body1,
-#z {
+button {
   font-family: "Poppins";
+}
+
+.Mui-focused {
+  border: none;
 }

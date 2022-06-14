@@ -101,6 +101,7 @@ export const COMPMobile = () => {
                 inputProps={{
                   style: {
                     textAlign: "center",
+                    border: none,
                   },
                 }}
               />
