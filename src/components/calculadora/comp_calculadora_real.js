@@ -30,20 +30,22 @@ const CalculadoraReal = () => {
 
   useEffect(async () => {
     var result = await getCalculadoraReal(cedula)
-    if (result.Rejected) history.push("/solicitud/rechazado")
-    setDatosCalculadora(result.Done)
+    if (result.Rejected) {
+      history.push("/solicitud/rechazado")
+    } else {
+      setDatosCalculadora(result.Done)
+      setMontoCalculadora(result.Done.MontoDefaultMensual)
+      setPlazoCalculadora(result.Done.PlazoDefaultMensual)
+      setTasaCalculadora(result.Done.TasaMensual)
 
-    setMontoCalculadora(result.Done.MontoMaxMensual)
-    setPlazoCalculadora(result.Done.PlazoMaxMensual)
-    setTasaCalculadora(result.Done.TasaMensual)
-
-    Calcular_Cuota(
-      result.Done.MontoMaxMensual,
-      result.Done.PlazoMaxMensual,
-      frecuenciaCalculadora,
-      result.Done.TasaMensual
-    )
-    setShowLoading(false)
+      Calcular_Cuota(
+        result.Done.MontoMaxMensual,
+        result.Done.PlazoMaxMensual,
+        frecuenciaCalculadora,
+        result.Done.TasaMensual
+      )
+      setShowLoading(false)
+    }
   }, [])
 
   function Calcular_Cuota(monto, plazo, frecuencia, tasa) {
