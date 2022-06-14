@@ -109,7 +109,17 @@ export const OtpValidacion = () => {
                   }}
                 />
               ) : (
-                <Button variant="text" className="btn-block violet">
+                <Button
+                  variant="text"
+                  className="btn-block violet"
+                  onClick={() => {
+                    var { credito } = location.state
+                    history.push({
+                      pathname: `/validacion_otp`,
+                      state: { credito },
+                    })
+                  }}
+                >
                   Ingresar otro número de celular
                 </Button>
               )}

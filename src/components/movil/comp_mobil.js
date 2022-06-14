@@ -25,6 +25,8 @@ export const COMPMobile = () => {
   const history = useHistory()
   const location = useLocation()
   const [open, setOpen] = useState(false)
+  const [isValidCellphone, setIsValidCellphone] = useState(false)
+  const [celular, setCelular] = useState(0)
 
   useEffect(() => {
     if (!location.state) history.push("/")
@@ -41,12 +43,13 @@ export const COMPMobile = () => {
   const sendSms = (e) => {
     const celular = e.target.value
     if (celular.length === 10) {
-      const otp = 1234
-      history.push({
-        pathname: `/validacion_otp_resultado`,
-        state: { celular, otp, credito: location.state.credito },
-      })
+      setIsValidCellphone(true)
+      setCelular(celular)
     }
+  }
+
+  const onRenderer = ({ seconds }) => {
+    return <label>En {seconds} segundos avanza siguiente paso</label>
   }
 
   return (
@@ -96,6 +99,24 @@ export const COMPMobile = () => {
                 className="w100p"
                 onChange={sendSms}
               />
+            </Col>
+          </Row>
+
+          <Row className="mt-3">
+            <Col className="text-center">
+              {isValidCellphone && (
+                <Countdown
+                  date={Date.now() + 3000}
+                  renderer={onRenderer}
+                  onComplete={() => {
+                    const otp = 1234
+                    history.push({
+                      pathname: `/validacion_otp_resultado`,
+                      state: { celular, otp, credito: location.state.credito },
+                    })
+                  }}
+                />
+              )}
             </Col>
           </Row>
 
