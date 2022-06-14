@@ -58,6 +58,7 @@ export const COMPIdentification = () => {
   let { monto } = useParams()
   let history = useHistory()
   const [isValidCode, setIsValidCode] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
   const [cedula, setCedula] = useState(0)
   const [open, setOpen] = useState(false)
 
@@ -69,6 +70,7 @@ export const COMPIdentification = () => {
   }, [])
 
   const handleChangeDocument = async (e) => {
+    setErrorMessage("")
     const { value } = e.target
 
     if (value.length > 8) {
@@ -88,6 +90,7 @@ export const COMPIdentification = () => {
           idCookie: localStorage.getItem("cookie"),
           timeStamp: new Date(),
         })
+        setErrorMessage("La cédula ingresada no es válida")
       } else {
         interaccionesService.interacciones({
           step: step.VALIDA_IDENTIFICACION,
@@ -113,6 +116,14 @@ export const COMPIdentification = () => {
 
   const handleClose = () => {
     setOpen(false)
+  }
+
+  const goToCalculadoraReal = () => {
+    if (cedula == 0) {
+      setErrorMessage("Ingrese una cédula válida")
+    } else {
+      history.push(`/oferta_real/${cedula}/${monto}`)
+    }
   }
 
   return (
@@ -146,22 +157,27 @@ export const COMPIdentification = () => {
           </Col>
         </Row>
 
-        <Row className="mb-5 pb-5 mt-3 text-center">
+        <Row className="mt-3 mb-2 pb-5 mt-3 text-center">
           <Col>
-            {isValidCode && (
-              <Countdown
-                date={Date.now() + 3000}
-                renderer={onRenderer}
-                onComplete={() => {
-                  history.push(`/oferta_real/${cedula}/${monto}`)
-                }}
-              />
-            )}
+            <Typography>
+              {errorMessage}
+              {isValidCode && (
+                <Countdown
+                  date={Date.now() + 3000}
+                  renderer={onRenderer}
+                  onComplete={goToCalculadoraReal}
+                />
+              )}
+            </Typography>
           </Col>
         </Row>
         <Row className="mt-5 pt-5">
           <Col>
-            <Button variant="contained" className="btn-zz bottom">
+            <Button
+              variant="contained"
+              className="btn-zz bottom"
+              onClick={goToCalculadoraReal}
+            >
               Continuar
             </Button>
           </Col>
