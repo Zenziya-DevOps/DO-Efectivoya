@@ -8,6 +8,7 @@ import "../../css/Btt.css"
 import Box from "@mui/material/Box"
 import Slider from "@mui/material/Slider"
 import Button from "@mui/material/Button"
+import CircularProgress from "@mui/material/CircularProgress"
 
 const deviceDetector = new DeviceDetector()
 const userAgent = window.navigator.userAgent
@@ -15,37 +16,58 @@ const device = deviceDetector.parse(userAgent)
 
 const CalculadoraReal = () => {
   let { cedula, monto } = useParams()
-  const [montoCalculadora, setMontoCalculadora] = useState(parseInt(monto))
-  const [plazoCalculadora, setPlazoCalculadora] = useState(5)
+  const [datosCalculadora, setDatosCalculadora] = useState({})
+  //const [montoCalculadora, setMontoCalculadora] = useState(parseInt(monto))
+  const [montoCalculadora, setMontoCalculadora] = useState(0)
+  const [plazoCalculadora, setPlazoCalculadora] = useState(0)
   const [frecuenciaCalculadora, setFrecuenciaCalculadora] = useState(1)
+  const [tasaCalculadora, setTasaCalculadora] = useState(0)
+
   const [mensajeCuota, setMensajeCuota] = useState("")
+  const [showLoading, setShowLoading] = useState(true)
+
   let history = useHistory()
 
   useEffect(async () => {
-    await getCalculadoraReal(cedula)
-    Calcular_Cuota()
+    var result = await getCalculadoraReal(cedula)
+    if (result.Rejected) history.push("/solicitud/rechazado")
+    setDatosCalculadora(result.Done)
+
+    setMontoCalculadora(result.Done.MontoMaxMensual)
+    setPlazoCalculadora(result.Done.PlazoMaxMensual)
+    setTasaCalculadora(result.Done.TasaMensual)
+
+    Calcular_Cuota(
+      result.Done.MontoMaxMensual,
+      result.Done.PlazoMaxMensual,
+      frecuenciaCalculadora,
+      result.Done.TasaMensual
+    )
+    setShowLoading(false)
   }, [])
 
-  function Calcular_Cuota(monto, plazo, frecuencia) {
+  function Calcular_Cuota(monto, plazo, frecuencia, tasa) {
     var monto = monto || montoCalculadora
     var plazo = plazo || plazoCalculadora
     var frecuencia = frecuencia || frecuenciaCalculadora
-    var tasa = 2.2
+    var tasa = tasa || tasaCalculadora
 
     let F = frecuencia == 1 ? 30 : 15
-    let R = (tasa / 365) * F
+    let R = (tasa / 100 / 365) * F
     let C = monto * 1.11
     let plazoReal = frecuencia == 1 ? plazo : plazo * 2
     let P = C * (R / (1 - (1 + R) ** -plazoReal))
     let valorCuota = Math.round(P / 5) * 5
 
     setMensajeCuota(
-      `<b class="violet">${plazoReal}</b> cuotas de <b class="violet">RD$ ${valorCuota}</b>`
+      `<b class="violet">${plazoReal}</b> cuotas de <b class="violet">RD$ ${valorCuota
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</b>`
     )
   }
 
   function valuetext(value) {
-    return `RD$ ${value}`
+    return `RD$ ${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`
   }
 
   function plazoFormat(value) {
@@ -88,80 +110,102 @@ const CalculadoraReal = () => {
 
   return (
     <>
-      <Box className="calculadora-real" pr={5} pl={5} pt={3} pb={3}>
-        <Box>
-          <span>Cuota</span>
-          <div className="d-flex justify-content-center row">
-            <button
-              type="button"
-              className={
-                frecuenciaCalculadora == 1
-                  ? "Calc-Active m-1"
-                  : "Calc-Desac m-1"
-              }
-              value="1"
-              onClick={handleChangeFrecuencia}
-            >
-              Mensual
-            </button>
-            <button
-              type="button"
-              className={
-                frecuenciaCalculadora == 2
-                  ? "Calc-Active m-1"
-                  : "Calc-Desac m-1"
-              }
-              value="2"
-              onClick={handleChangeFrecuencia}
-            >
-              Quincenal
-            </button>
-          </div>
+      {showLoading ? (
+        <Box className="calculadora-real" pr={5} pl={5} pt={3} pb={3}>
+          <Box className="text-center">
+            <CircularProgress />
+          </Box>
         </Box>
+      ) : (
+        <>
+          <Box xs={12} className="my-auto text-center pt-1 white">
+            <p className="fs-32">
+              <b>
+                Tienes RD $
+                {datosCalculadora.MontoDefaultMensual.toString().replace(
+                  /\B(?=(\d{3})+(?!\d))/g,
+                  "."
+                )}{" "}
+                disponibles
+              </b>
+            </p>
+          </Box>
+          <Box className="calculadora-real" pr={5} pl={5} pt={3} pb={3}>
+            <Box>
+              <span>Cuota</span>
+              <div className="d-flex justify-content-center row">
+                <button
+                  type="button"
+                  className={
+                    frecuenciaCalculadora == 1
+                      ? "Calc-Active m-1"
+                      : "Calc-Desac m-1"
+                  }
+                  value="1"
+                  onClick={handleChangeFrecuencia}
+                >
+                  Mensual
+                </button>
+                <button
+                  type="button"
+                  className={
+                    frecuenciaCalculadora == 2
+                      ? "Calc-Active m-1"
+                      : "Calc-Desac m-1"
+                  }
+                  value="2"
+                  onClick={handleChangeFrecuencia}
+                >
+                  Quincenal
+                </button>
+              </div>
+            </Box>
 
-        <Box mt={3}>
-          <span>¿Cuanto vas a pedir?</span>
-          <Slider
-            aria-label="Always visible"
-            valueLabelFormat={valuetext}
-            value={montoCalculadora}
-            step={1000}
-            min={5000}
-            max={10000}
-            onChange={handleChangeMonto}
-            valueLabelDisplay="on"
-          />
-        </Box>
+            <Box mt={3}>
+              <span>¿Cuanto vas a pedir?</span>
+              <Slider
+                aria-label="Always visible"
+                valueLabelFormat={valuetext}
+                value={montoCalculadora}
+                step={1000}
+                min={datosCalculadora.MontoMinMensual}
+                max={datosCalculadora.MontoMaxMensual}
+                onChange={handleChangeMonto}
+                valueLabelDisplay="on"
+              />
+            </Box>
 
-        <Box mt={2}>
-          <span>Plazo</span>
-          <Slider
-            aria-label="Always visible"
-            valueLabelFormat={plazoFormat}
-            value={plazoCalculadora}
-            step={1}
-            min={3}
-            max={6}
-            onChange={handleChangePlazo}
-            valueLabelDisplay="on"
-          />
-        </Box>
-        <Box className="text-center" mb={2} mt={3}>
-          <div
-            className="fs-22"
-            dangerouslySetInnerHTML={{ __html: mensajeCuota }}
-          />
-        </Box>
-        <Box alignItems="center">
-          <Button
-            onClick={submit}
-            variant="contained"
-            className="btn-block btn-zz"
-          >
-            Solicitar ahora
-          </Button>
-        </Box>
-      </Box>
+            <Box mt={2}>
+              <span>Plazo</span>
+              <Slider
+                aria-label="Always visible"
+                valueLabelFormat={plazoFormat}
+                value={plazoCalculadora}
+                step={1}
+                min={datosCalculadora.PlazoMinMensual}
+                max={datosCalculadora.PlazoMaxMensual}
+                onChange={handleChangePlazo}
+                valueLabelDisplay="on"
+              />
+            </Box>
+            <Box className="text-center" mb={2} mt={3}>
+              <div
+                className="fs-22"
+                dangerouslySetInnerHTML={{ __html: mensajeCuota }}
+              />
+            </Box>
+            <Box alignItems="center">
+              <Button
+                onClick={submit}
+                variant="contained"
+                className="btn-block btn-zz"
+              >
+                Solicitar ahora
+              </Button>
+            </Box>
+          </Box>
+        </>
+      )}
     </>
   )
 }

@@ -3,11 +3,12 @@ import axios from "axios"
 const baseUrl = process.env.REACT_APP_BASE_RAW_API
 
 export const getCalculadoraReal = async (cedula) => {
-  //debugger
-  //   const resp = await axios({
-  //     url: `${base_url}/${cedula}`,
-  //   })
-  //   return resp.data
+  try {
+    const result = await axios.get(`${baseUrl}/calculator/data/${cedula}`)
+    return result.data
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export const doScoring = async (body) => {
