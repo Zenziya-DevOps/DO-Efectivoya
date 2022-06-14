@@ -1,16 +1,16 @@
 var credito = {
-  FrecuenciaSolicitada: null,
-  CantCuotasSolicitadas: null,
-  MontoSolicitado: null,
-  Cedula: null,
-  Celular: null,
-  Marca: null,
-  Modelo: null,
-  TipoDispositivo: null,
-  IdCookie: null,
-  IpConnection: null,
-  TraceID: null,
-  Pais: "DO",
+  frecuenciaSolicitada: null,
+  cantCuotasSolicitadas: null,
+  montoSolicitado: null,
+  cedula: null,
+  celular: null,
+  marca: null,
+  modelo: null,
+  tipoDispositivo: null,
+  idCookie: null,
+  ipConnection: null,
+  traceID: null,
+  pais: "DO",
 }
 
 export default credito

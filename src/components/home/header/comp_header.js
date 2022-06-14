@@ -87,7 +87,7 @@ export class COMP_Header extends Component {
                       className="font-weight-bold"
                       style={label_(3, 0, "2.2em")}
                     >
-                      El préstamo para <br /> cumplir todos tus planes.
+                      ¡Pide un préstamo y recibe el dinero hoy mismo!
                     </label>
                     <label style={label_(3, 0, "1em")}>
                       <label className="mt-1 mb-0">
@@ -115,8 +115,7 @@ export class COMP_Header extends Component {
                 <>
                   <Col xs={12} className="my-auto text-center pt-3 pb-3">
                     <label style={label_(3, 0, "25px")}>
-                      El préstamo para <br /> todo lo que quieres <br />{" "}
-                      <span style={{ color: "#00D1FF" }}>¡ya!</span>
+                      <b>¡Pide un préstamo y recibe el dinero hoy mismo!</b>
                     </label>
                   </Col>
 

@@ -98,6 +98,11 @@ export const COMPMobile = () => {
                 label="Número de celular"
                 className="w100p"
                 onChange={sendSms}
+                inputProps={{
+                  style: {
+                    textAlign: "center",
+                  },
+                }}
               />
             </Col>
           </Row>

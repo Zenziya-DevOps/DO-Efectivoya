@@ -74,7 +74,7 @@ export const Vw_OnBoarding = () => {
           <Aprobado />
         </Route>
 
-        <Route path="/solicitud/desaprobado">
+        <Route path="/solicitud/rechazado">
           <Desaprobado />
         </Route>
 

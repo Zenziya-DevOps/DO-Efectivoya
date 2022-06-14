@@ -71,17 +71,17 @@ const CalculadoraReal = () => {
     const response = await fetch("https://geolocation-db.com/json/")
     const data = await response.json()
 
-    credito.FrecuenciaSolicitada = frecuenciaCalculadora
-    credito.CantCuotasSolicitadas = plazoCalculadora
-    credito.MontoSolicitado = montoCalculadora
-    credito.Cedula = cedula
-    credito.Celular = null
-    credito.Marca = device.device.brand
-    credito.Modelo = device.device.model
-    credito.Campana = 1
-    credito.TipoDispositivo = device.device.type
-    credito.IdCookie = localStorage.getItem("cookie")
-    credito.IpConnection = data.IPv4
+    credito.frecuenciaSolicitada = frecuenciaCalculadora
+    credito.cantCuotasSolicitadas = plazoCalculadora
+    credito.montoSolicitado = montoCalculadora
+    credito.cedula = cedula
+    credito.celular = null
+    credito.marca = device.device.brand
+    credito.modelo = device.device.model
+    credito.campana = 1
+    credito.tipoDispositivo = device.device.type
+    credito.idCookie = localStorage.getItem("cookie")
+    credito.ipConnection = data.IPv4
 
     history.push({ pathname: `/validacion_otp`, state: { credito } })
   }

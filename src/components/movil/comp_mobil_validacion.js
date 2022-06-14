@@ -27,11 +27,13 @@ export const OtpValidacion = () => {
   }, [])
 
   const validateOtp = async (e) => {
+    setMessage("")
     const otp = e.target.value
     if (otp.length === 4) {
       const result = await otpVerification(location.state.celular, otp)
 
       if (result.found) setIsValidCode(true)
+      else setMessage("El código ingresado es incorrecto")
     }
   }
 
@@ -73,40 +75,29 @@ export const OtpValidacion = () => {
 
           <Row>
             <Col className="text-center">
-              {message.length > 0 ? (
-                <Typography className="error" paragraph={true}>
-                  {message}
-                </Typography>
-              ) : (
-                <TextField
-                  type="number"
-                  maxLength="11"
-                  className="w50p"
-                  variant="standard"
-                  inputProps={{
-                    style: {
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      fontSize: "2rem",
-                      letterSpacing: "10px",
-                    },
-                  }}
-                  onChange={validateOtp}
-                />
-              )}
+              <TextField
+                type="number"
+                maxLength="11"
+                className="w50p"
+                variant="standard"
+                inputProps={{
+                  style: {
+                    textAlign: "center",
+                    borderRadius: "5px",
+                    fontSize: "2rem",
+                    letterSpacing: "10px",
+                  },
+                }}
+                onChange={validateOtp}
+              />
             </Col>
           </Row>
 
-          <Row className="mt-5 pt-5">
+          <Row className="mt-5 pt-5 text-center">
             <Col>
-              <Button variant="contained" className="btn-block btn-zz bottom">
-                Continuar
-              </Button>
-            </Col>
-          </Row>
-
-          <Row className="mt-3">
-            <Col className="text-center">
+              <Typography className="error" paragraph={true}>
+                {message}
+              </Typography>
               {isValidCode ? (
                 <Countdown
                   date={Date.now() + 3000}
@@ -136,6 +127,14 @@ export const OtpValidacion = () => {
                   Ingresar otro número de celular
                 </Button>
               )}
+            </Col>
+          </Row>
+
+          <Row className="mt-5 pt-5">
+            <Col>
+              <Button variant="contained" className="btn-block btn-zz bottom">
+                Continuar
+              </Button>
             </Col>
           </Row>
         </Container>

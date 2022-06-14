@@ -7,15 +7,21 @@ import { Typography } from "@mui/material"
 import { Container, Row, Col } from "react-bootstrap"
 import LinearProgress from "@mui/material/LinearProgress"
 
+import { doScoring } from "./../services/api_efectivoya"
+
 export const ProcesarSolicitud = () => {
   const history = useHistory()
   const location = useLocation()
 
-  useEffect(() => {
+  useEffect(async () => {
     if (!location.state) history.push("/")
     const { credito } = location.state
-
-    debugger
+    const result = await doScoring(credito)
+    if (result.ShortScoring === "Aprobado") {
+      history.push("/solicitud/aprobado")
+    } else {
+      history.push("/solicitud/rechazado")
+    }
   }, [])
 
   return (

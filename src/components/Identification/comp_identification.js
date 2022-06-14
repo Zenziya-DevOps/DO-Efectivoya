@@ -132,7 +132,7 @@ export const COMPIdentification = () => {
         <Row>
           <Col xs={12}>
             <Typography className="title">
-              Ingresa tu número de cédula
+              Ingresa tu número <br /> de cédula
             </Typography>
           </Col>
         </Row>
@@ -153,6 +153,11 @@ export const COMPIdentification = () => {
               label="Número de cédula"
               onChange={handleChangeDocument}
               className="w100p"
+              inputProps={{
+                style: {
+                  textAlign: "center",
+                },
+              }}
             />
           </Col>
         </Row>

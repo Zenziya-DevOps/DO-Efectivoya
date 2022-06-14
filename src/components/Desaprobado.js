@@ -30,7 +30,9 @@ export const Desaprobado = () => {
         <Row>
           <Col>
             <Typography paragraph={true} className="text-center white">
-              ¡Lo sentimos! <br /> no podemos prestarte dinero
+              <b>
+                ¡Lo sentimos! <br /> No podemos prestarte dinero
+              </b>
             </Typography>
           </Col>
         </Row>

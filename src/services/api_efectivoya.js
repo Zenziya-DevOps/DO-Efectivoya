@@ -10,14 +10,16 @@ export const getCalculadoraReal = async (cedula) => {
   //   return resp.data
 }
 
-export const postScoring = async (body) => {
-  //   debugger
-  //   const resp = await axios({
-  //     method: "post",
-  //     url: `${base_url}/scoring/doScoring`,
-  //     data: JSON.stringify(body),
-  //   })
-  //   return resp.data
+export const doScoring = async (body) => {
+  try {
+    const resp = await axios.post(`${baseUrl}/scoring/doScoring`, body, {
+      "Content-Type": "application/json",
+    })
+    return resp.data
+  } catch (err) {
+    console.log(err)
+    return err
+  }
 }
 
 export const otpVerification = async (cellphone, otp) => {

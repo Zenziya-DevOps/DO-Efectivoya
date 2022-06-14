@@ -27,7 +27,9 @@ export class COMP_Header_real extends Component {
 
             <Row className="pt-1">
               <Col xs={12} className="my-auto text-center pt-1 white">
-                <p className="fs-32">Tienes RD $10.000 disponibles</p>
+                <p className="fs-32">
+                  <b>Tienes RD $xx.xxx disponibles</b>
+                </p>
               </Col>
 
               <Col xs={12}>
