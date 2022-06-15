@@ -113,7 +113,7 @@ const CalculadoraReal = () => {
   return (
     <>
       {showLoading ? (
-        <Box className="calculadora-real" pr={5} pl={5} pt={3} pb={3}>
+        <Box className="calculadora-real" pr={5} pl={5} pt={3} pb={3} xs={12}>
           <Box className="text-center">
             <CircularProgress />
           </Box>

@@ -14,7 +14,7 @@ export class COMP_Header_real extends Component {
             height: "100vh",
           }}
         >
-          <Container fluid>
+          <Container>
             <Row className="p-3 my-auto mb-4 rounded">
               <Col className="p-2">
                 <img src={`${ico}`} style={{ width: "195px" }} />
@@ -26,7 +26,11 @@ export class COMP_Header_real extends Component {
             </Row>
 
             <Row className="pt-1">
-              <Col xs={12}>
+              <Col
+                xs={12}
+                md={{ span: 8, offset: 2 }}
+                lg={{ span: 6, offset: 3 }}
+              >
                 <CalculadoraReal />
               </Col>
             </Row>

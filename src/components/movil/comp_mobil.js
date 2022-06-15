@@ -77,7 +77,7 @@ export const COMPMobile = () => {
           </Col>
         </Row>
       </Container>
-      <Container>
+      <Container className="bwhite">
         <Container className="pt-3">
           <Row>
             <Col>

@@ -78,7 +78,7 @@ export const OtpValidacion = () => {
           </Col>
         </Row>
       </Container>
-      <Container className="pt-3 pb-1">
+      <Container className="pt-3 pb-1 bwhite">
         <Container>
           <Row>
             <Col xs={12}>
