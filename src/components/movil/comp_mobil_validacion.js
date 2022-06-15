@@ -6,8 +6,7 @@ import Countdown from "react-countdown"
 import { Typography } from "@mui/material"
 import { Button } from "@mui/material"
 import TextField from "@mui/material/TextField"
-import createOtp from "./../../services/api_efectivoya"
-import otpVerification from "./../../services/api_efectivoya"
+import api_efectivoya from "./../../services/api_efectivoya"
 import ico from "../../images/ico.svg"
 import close from "../../images/close.svg"
 import "../../css/placeholder.css"
@@ -20,7 +19,9 @@ export const OtpValidacion = () => {
 
   useEffect(async () => {
     if (!location.state) history.push("/")
-    var result = await createOtp(parseInt(location.state.celular))
+    var result = await api_efectivoya.createOtp(
+      parseInt(location.state.celular)
+    )
     if (result.des_respuesta !== "OK")
       setMessage(
         "Hubo un problema al enviar el SMS, por favor intente más tarde."
@@ -31,7 +32,10 @@ export const OtpValidacion = () => {
     setMessage("")
     const otp = e.target.value
     if (otp.length === 4) {
-      const result = await otpVerification(location.state.celular, otp)
+      const result = await api_efectivoya.otpVerification(
+        location.state.celular,
+        otp
+      )
 
       if (result.found) setIsValidCode(true)
       else setMessage("El código ingresado es incorrecto")
