@@ -17,8 +17,12 @@ export const ProcesarSolicitud = () => {
     if (!location.state) history.push("/")
     const { credito } = location.state
     const result = await api_efectivoya.doScoring(credito)
+    debugger
     if (result.ShortScoring === "Done") {
-      history.push("/solicitud/aprobado")
+      history.push({
+        pathname: `/solicitud/aprobado`,
+        state: { celular: credito.celular },
+      })
     } else {
       history.push("/solicitud/rechazado")
     }

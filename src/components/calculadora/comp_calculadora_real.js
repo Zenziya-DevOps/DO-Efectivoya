@@ -13,6 +13,7 @@ import CircularProgress from "@mui/material/CircularProgress"
 const deviceDetector = new DeviceDetector()
 const userAgent = window.navigator.userAgent
 const device = deviceDetector.parse(userAgent)
+var cantidadDeCuotas = 0
 
 const CalculadoraReal = () => {
   let { cedula, monto } = useParams()
@@ -57,12 +58,12 @@ const CalculadoraReal = () => {
     let F = frecuencia == 1 ? 30 : 15
     let R = (tasa / 100 / 365) * F
     let C = monto * 1.11
-    let plazoReal = frecuencia == 1 ? plazo : plazo * 2
-    let P = C * (R / (1 - (1 + R) ** -plazoReal))
+    cantidadDeCuotas = frecuencia == 1 ? plazo : plazo * 2
+    let P = C * (R / (1 - (1 + R) ** -cantidadDeCuotas))
     let valorCuota = Math.round(P / 5) * 5
 
     setMensajeCuota(
-      `<b class="violet">${plazoReal}</b> cuotas de <b class="violet">RD$ ${valorCuota
+      `<b class="violet">${cantidadDeCuotas}</b> cuotas de <b class="violet">RD$ ${valorCuota
         .toString()
         .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</b>`
     )
@@ -96,7 +97,7 @@ const CalculadoraReal = () => {
     const data = await response.json()
 
     credito.frecuenciaSolicitada = frecuenciaCalculadora
-    credito.cantCuotasSolicitadas = plazoCalculadora
+    credito.cantCuotasSolicitadas = cantidadDeCuotas
     credito.montoSolicitado = montoCalculadora
     credito.cedula = cedula
     credito.celular = null

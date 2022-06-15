@@ -43,6 +43,7 @@ export const COMPMobile = () => {
   const sendSms = (e) => {
     const celular = e.target.value
     if (celular.length === 10) {
+      debugger
       setIsValidCellphone(true)
       setCelular(celular)
     }
@@ -53,6 +54,7 @@ export const COMPMobile = () => {
   }
 
   const goToValidarResultado = () => {
+    debugger
     history.push({
       pathname: `/validacion_otp_resultado`,
       state: { celular, credito: location.state.credito },

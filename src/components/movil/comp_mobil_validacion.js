@@ -19,9 +19,7 @@ export const OtpValidacion = () => {
 
   useEffect(async () => {
     if (!location.state) history.push("/")
-    var result = await api_efectivoya.createOtp(
-      parseInt(location.state.celular)
-    )
+    var result = await api_efectivoya.createOtp(location.state.celular)
     if (result.des_respuesta !== "OK")
       setMessage(
         "Hubo un problema al enviar el SMS, por favor intente más tarde."
