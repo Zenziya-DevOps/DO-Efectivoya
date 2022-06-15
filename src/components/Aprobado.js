@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useLocation } from "react-router-dom"
 import { Container, Row, Col } from "react-bootstrap"
 import ico from "../images/ico.svg"
