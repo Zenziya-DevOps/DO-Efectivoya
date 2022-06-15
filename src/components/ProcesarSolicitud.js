@@ -43,7 +43,7 @@ export const ProcesarSolicitud = () => {
           </Col>
         </Row>
       </Container>
-      <Container className="pt-5 mt-4 pb-1 text-center">
+      <Container className="pt-5  pb-1 text-center bwhite">
         <Col xs={12}>
           <Typography className="title fs-22 mt-3 mb-5 pb-5" paragraph={true}>
             Estamos chequeando la información
@@ -58,7 +58,7 @@ export const ProcesarSolicitud = () => {
             </Col>
           </Row>
         </Col>
-        <Col xs={12}>
+        <Col xs={12} className="mb-3">
           <Typography className="title fs-22 mt-5 pt-5" paragraph={true}>
             Espera un momento...
           </Typography>

@@ -32,7 +32,7 @@ export const Aprobado = () => {
         </Row>
       </Container>
 
-      <Container>
+      <Container className="bwhite">
         <Row>
           <Col className="text-center pt-5">
             <img src={`${aprobado}`} style={{ width: "100px" }} />
@@ -53,7 +53,7 @@ export const Aprobado = () => {
                 alert("Te fuiste a botmaker")
               }}
             />
-            <Button variant="contained" className="mt-3 btn-zz btn-block">
+            <Button variant="contained" className="mt-3 btn-zz btn-block mb-5">
               <WhatsAppIcon style={{ marginRight: "5px" }} />
               {"  "} Continuar
             </Button>
