@@ -3,7 +3,7 @@ import credito from "../../model/credito"
 import DeviceDetector from "device-detector-js"
 import { useParams } from "react-router-dom"
 import { useHistory } from "react-router-dom"
-import { getCalculadoraReal } from "../../services/api_efectivoya"
+import api_efectivoya from "../../services/api_efectivoya"
 import "../../css/Btt.css"
 import Box from "@mui/material/Box"
 import Slider from "@mui/material/Slider"
@@ -29,7 +29,7 @@ const CalculadoraReal = () => {
   let history = useHistory()
 
   useEffect(async () => {
-    var result = await getCalculadoraReal(cedula)
+    var result = await api_efectivoya.getCalculadoraReal(cedula)
     if (result.Rejected) {
       history.push("/solicitud/rechazado")
     } else {

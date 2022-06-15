@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import { useHistory } from "react-router-dom"
-import ico from "../../images/ico.svg"
-import close from "../../images/close.svg"
-import { Typography } from "@mui/material"
 import { Container, Row, Col } from "react-bootstrap"
+import Countdown from "react-countdown"
+import { Typography } from "@mui/material"
 import { Button } from "@mui/material"
 import TextField from "@mui/material/TextField"
-import { createOtp, otpVerification } from "./../../services/api_efectivoya"
+import createOtp from "./../../services/api_efectivoya"
+import otpVerification from "./../../services/api_efectivoya"
+import ico from "../../images/ico.svg"
+import close from "../../images/close.svg"
 import "../../css/placeholder.css"
-import Countdown from "react-countdown"
 
 export const OtpValidacion = () => {
   const history = useHistory()
