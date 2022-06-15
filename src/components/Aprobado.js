@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import ico from "../images/ico.svg"
 import close from "../images/close.svg"
