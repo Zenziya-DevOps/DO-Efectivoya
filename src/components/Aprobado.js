@@ -64,7 +64,16 @@ export const Aprobado = () => {
                   "+y+%C2%A1Quiero+un+pr%C3%A9stamo+Efectivo+Ya!&app_absent=0"
               }}
             />
-            <Button variant="contained" className="mt-3 btn-zz btn-block mb-5">
+            <Button
+              variant="contained"
+              className="mt-3 btn-zz btn-block mb-5"
+              onClick={() => {
+                window.location.href =
+                  "https://api.whatsapp.com/send/?phone=18494104542&text=Mi+numero+de+c%C3%A9dula+es+" +
+                  cedula +
+                  "+y+%C2%A1Quiero+un+pr%C3%A9stamo+Efectivo+Ya!&app_absent=0"
+              }}
+            >
               <WhatsAppIcon style={{ marginRight: "5px" }} />
               {"  "} Continuar
             </Button>
