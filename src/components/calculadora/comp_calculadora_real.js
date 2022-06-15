@@ -14,6 +14,8 @@ const deviceDetector = new DeviceDetector()
 const userAgent = window.navigator.userAgent
 const device = deviceDetector.parse(userAgent)
 var cantidadDeCuotas = 0
+var fee = 1
+var tasa = 1
 
 const CalculadoraReal = () => {
   let { cedula, monto } = useParams()
@@ -22,7 +24,6 @@ const CalculadoraReal = () => {
   const [montoCalculadora, setMontoCalculadora] = useState(0)
   const [plazoCalculadora, setPlazoCalculadora] = useState(0)
   const [frecuenciaCalculadora, setFrecuenciaCalculadora] = useState(1)
-  const [tasaCalculadora, setTasaCalculadora] = useState(0)
 
   const [mensajeCuota, setMensajeCuota] = useState("")
   const [showLoading, setShowLoading] = useState(true)
@@ -37,7 +38,8 @@ const CalculadoraReal = () => {
       setDatosCalculadora(result.Done)
       setMontoCalculadora(result.Done.MontoDefaultMensual)
       setPlazoCalculadora(result.Done.PlazoDefaultMensual)
-      setTasaCalculadora(result.Done.TasaMensual)
+      tasa = result.Done.TasaMensual
+      fee = result.Done.Fee
 
       Calcular_Cuota(
         result.Done.MontoDefaultMensual,
@@ -45,6 +47,7 @@ const CalculadoraReal = () => {
         frecuenciaCalculadora,
         result.Done.TasaMensual
       )
+
       setShowLoading(false)
     }
   }, [])
@@ -57,9 +60,9 @@ const CalculadoraReal = () => {
 
     let F = frecuencia == 1 ? 30 : 15
     let R = (tasa / 100 / 365) * F
-    let C = monto * 1.11
+    let montoConFee = monto * fee
     cantidadDeCuotas = frecuencia == 1 ? plazo : plazo * 2
-    let P = C * (R / (1 - (1 + R) ** -cantidadDeCuotas))
+    let P = montoConFee * (R / (1 - (1 + R) ** -cantidadDeCuotas))
     let valorCuota = Math.round(P / 5) * 5
 
     setMensajeCuota(

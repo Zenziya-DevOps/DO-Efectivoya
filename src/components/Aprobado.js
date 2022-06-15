@@ -8,9 +8,15 @@ import Countdown from "react-countdown"
 import aprobado from "../images/img_aprobado.png"
 
 export const Aprobado = () => {
+  const [celular, setCelular] = useState(0)
   const onRenderer = ({ seconds }) => {
     return <label>En {seconds} segundos avanzará al chat</label>
   }
+
+  useEffect(() => {
+    if (!location.state) history.push("/")
+    setCelular(location.state.celular)
+  }, [])
 
   return (
     <>
@@ -52,8 +58,8 @@ export const Aprobado = () => {
               onComplete={() => {
                 window.location.href =
                   "https://api.whatsapp.com/send/?phone=18494104542&text=Mi+numero+de+c%C3%A9dula+es+" +
-                  1131286452 +
-                  "%7D+y+%C2%A1Quiero+un+pr%C3%A9stamo+Efectivo+Ya!&app_absent=0"
+                  celular +
+                  "+y+%C2%A1Quiero+un+pr%C3%A9stamo+Efectivo+Ya!&app_absent=0"
               }}
             />
             <Button variant="contained" className="mt-3 btn-zz btn-block mb-5">
