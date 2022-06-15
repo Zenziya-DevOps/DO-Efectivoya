@@ -22,7 +22,7 @@ export const OtpValidacion = () => {
     var result = await createOtp(parseInt(location.state.celular))
     if (result.des_respuesta !== "OK")
       setMessage(
-        "Hubo un problema al enviar el SMS, por favor intente más tarde"
+        "Hubo un problema al enviar el SMS, por favor intente más tarde."
       )
   }, [])
 
@@ -51,7 +51,7 @@ export const OtpValidacion = () => {
 
   const execDoScoring = () => {
     var { credito, celular } = location.state
-    credito.Celular = celular
+    credito.celular = celular
     history.push({
       pathname: `/procesar_solicitud`,
       state: { credito },
@@ -110,7 +110,7 @@ export const OtpValidacion = () => {
             </Col>
           </Row>
 
-          <Row className="mt-5 pt-5 text-center">
+          <Row className="mt-3 pt-5 text-center">
             <Col>
               <Typography className="error" paragraph={true}>
                 {message}
@@ -125,6 +125,7 @@ export const OtpValidacion = () => {
                 <Button
                   variant="text"
                   className="btn-block violet"
+                  style={{ textTransform: "capitalize" }}
                   onClick={goToValidarOtp}
                 >
                   Ingresar otro número de celular

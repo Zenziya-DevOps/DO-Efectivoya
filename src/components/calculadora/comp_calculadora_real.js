@@ -39,8 +39,8 @@ const CalculadoraReal = () => {
       setTasaCalculadora(result.Done.TasaMensual)
 
       Calcular_Cuota(
-        result.Done.MontoMaxMensual,
-        result.Done.PlazoMaxMensual,
+        result.Done.MontoDefaultMensual,
+        result.Done.PlazoDefaultMensual,
         frecuenciaCalculadora,
         result.Done.TasaMensual
       )
@@ -151,11 +151,11 @@ const CalculadoraReal = () => {
                 <button
                   type="button"
                   className={
-                    frecuenciaCalculadora == 2
+                    frecuenciaCalculadora == 15
                       ? "Calc-Active m-1"
                       : "Calc-Desac m-1"
                   }
-                  value="2"
+                  value="15"
                   onClick={handleChangeFrecuencia}
                 >
                   Quincenal

@@ -17,7 +17,7 @@ export const ProcesarSolicitud = () => {
     if (!location.state) history.push("/")
     const { credito } = location.state
     const result = await doScoring(credito)
-    if (result.ShortScoring === "Aprobado") {
+    if (result.ShortScoring === "Done") {
       history.push("/solicitud/aprobado")
     } else {
       history.push("/solicitud/rechazado")
