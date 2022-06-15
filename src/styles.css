@@ -100,16 +100,31 @@ button.btn-zz {
   border-radius: 10px;
 }
 
-.btn-zz.bottom {
-  position: fixed;
-  bottom: 10%;
-  width: 84%;
+#master {
+  background-color: white;
 }
 
-button {
-  font-family: "Poppins";
+@media screen and (max-width: 768px) {
+  .btn-zz.bottom {
+    position: fixed;
+    bottom: 10%;
+    width: 84%;
+  }
 }
 
-.Mui-focused {
-  border: none;
+@media (min-width: 769px) {
+  #z {
+    background-image: url("./images/vector.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    min-height: 100vh;
+  }
+
+  #z .bwhite.container {
+    border-radius: 0px 0px 20px 20px;
+  }
+
+  .btn-zz.bottom {
+    margin-bottom: 40px;
+  }
 }

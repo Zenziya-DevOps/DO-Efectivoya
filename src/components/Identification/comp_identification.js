@@ -180,7 +180,7 @@ export const COMPIdentification = () => {
           <Col>
             <Button
               variant="contained"
-              className="btn-zz bottom"
+              className="btn-zz bottom btn-block"
               onClick={goToCalculadoraReal}
             >
               Continuar

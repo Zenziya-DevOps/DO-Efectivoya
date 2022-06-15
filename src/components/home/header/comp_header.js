@@ -25,45 +25,13 @@ export class COMP_Header extends Component {
         >
           <Container fluid>
             <Row className="p-3 my-auto mb-4 rounded">
-              {device.device.type === "desktop" ? (
-                <>
-                  <Col>
-                    <img src={`${ico}`} style={{ width: "calc(25% - 1em)" }} />
-                  </Col>
+              <Col className="p-2">
+                <img src={`${ico}`} style={{ width: "195px" }} />
+              </Col>
 
-                  <Col className="ml-auto">
-                    <Row className="justify-content-end">
-                      <Col xs={3}>
-                        <a href="#Cuota">
-                          <label style={label_(3, 0)}>Pagar cuota</label>
-                        </a>
-                      </Col>
-
-                      <Col xs={3}>
-                        <a href="#Requisito">
-                          <label style={label_(3, 0)}>Requisitos</label>
-                        </a>
-                      </Col>
-
-                      <Col xs={3}>
-                        <a href="#Ayuda">
-                          <label style={label_(3, 0)}>Ayuda</label>
-                        </a>
-                      </Col>
-                    </Row>
-                  </Col>
-                </>
-              ) : (
-                <>
-                  <Col className="p-2">
-                    <img src={`${ico}`} style={{ width: "195px" }} />
-                  </Col>
-
-                  <Col xs={1} className="my-auto ml-auto">
-                    <Burger />
-                  </Col>
-                </>
-              )}
+              <Col xs={1} className="my-auto ml-auto">
+                <Burger />
+              </Col>
             </Row>
 
             <Row className="pt-1">
@@ -107,7 +75,7 @@ export class COMP_Header extends Component {
                     </label>
                   </Col>
 
-                  <Col xs={device.device.type === "desktop" ? 4 : 12}>
+                  <Col xs={4} className="my-auto">
                     <COMPCalculadoras />
                   </Col>
                 </>

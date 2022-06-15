@@ -25,7 +25,7 @@ export const IngresoCedula = () => {
         </Row>
       </Container>
 
-      <Container>
+      <Container className="bwhite">
         <Row>
           <Col>
             <COMPIdentification />
