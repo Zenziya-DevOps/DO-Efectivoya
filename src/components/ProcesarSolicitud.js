@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { useLocation } from "react-router-dom"
 import { useHistory } from "react-router-dom"
 import ico from "../images/ico.svg"
@@ -7,7 +7,7 @@ import { Typography } from "@mui/material"
 import { Container, Row, Col } from "react-bootstrap"
 import LinearProgress from "@mui/material/LinearProgress"
 
-import { doScoring } from "./../services/api_efectivoya"
+import doScoring from "./../services/api_efectivoya"
 
 export const ProcesarSolicitud = () => {
   const history = useHistory()

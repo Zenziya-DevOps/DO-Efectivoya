@@ -119,6 +119,12 @@ export const COMPIdentification = () => {
   }
 
   const goToCalculadoraReal = () => {
+    // interaccionesService.interacciones({
+    //   step: step.OFERTA,
+    //   value: `Monto: ${monto}`,
+    //   idCookie: localStorage.getItem("cookie"),
+    //   timeStamp: new Date(),
+    // })
     if (cedula == 0) {
       setErrorMessage("Ingrese una cédula válida")
     } else {

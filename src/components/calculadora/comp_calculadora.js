@@ -1,15 +1,26 @@
 import React, { useState } from "react"
 import { Container, Row, Col, Button, Form } from "react-bootstrap"
+import { useHistory } from "react-router-dom"
 import { Slider } from "@material-ui/core"
 import { Box_ } from "../../styles/Box"
 import "../../css/Btt.css"
-import { Link } from "react-router-dom"
 
 export const COMPCalculadoras = () => {
+  const history = useHistory()
   const [monto, setMonto] = useState(30000)
 
   const handleChangeMonto = (event, value) => {
     setMonto(value)
+  }
+
+  const handleSubmitMonto = () => {
+    history.push("/ingreso_cedula/" + monto)
+    // interaccionesService.interacciones({
+    //   step: step.OFERTA,
+    //   value: `Monto: ${monto}`,
+    //   idCookie: localStorage.getItem("cookie"),
+    //   timeStamp: new Date(),
+    // })
   }
 
   return (
@@ -37,9 +48,12 @@ export const COMPCalculadoras = () => {
                   className="mb-4"
                 />
 
-                <Link to={{ pathname: `ingreso_cedula/${monto}` }}>
-                  <Button className="btn-zz btn-block">Continuar</Button>
-                </Link>
+                <Button
+                  className="btn-zz btn-block"
+                  onClick={handleSubmitMonto}
+                >
+                  Continuar
+                </Button>
               </Col>
             </Row>
           </Container>
