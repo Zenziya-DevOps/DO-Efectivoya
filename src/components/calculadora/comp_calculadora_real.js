@@ -59,7 +59,7 @@ const CalculadoraReal = () => {
 
     let F = frecuencia == 1 ? 30 : 15
     let R = (tasa / 100 / 365) * F
-    let montoConFee = monto * (1 + fee)
+    let montoConFee = monto * (1 + fee / 100)
     cantidadDeCuotas = frecuencia == 1 ? plazo : plazo * 2
     let P = montoConFee * (R / (1 - (1 + R) ** -cantidadDeCuotas))
     let valorCuota = Math.round(P / 5) * 5
