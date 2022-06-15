@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useLocation } from "react-router-dom"
 import { Container, Row, Col } from "react-bootstrap"
 import ico from "../images/ico.svg"
 import close from "../images/close.svg"
@@ -8,6 +9,7 @@ import Countdown from "react-countdown"
 import aprobado from "../images/img_aprobado.png"
 
 export const Aprobado = () => {
+  const location = useLocation()
   const [cedula, setCedula] = useState(0)
   const onRenderer = ({ seconds }) => {
     return <label>En {seconds} segundos avanzará al chat</label>
