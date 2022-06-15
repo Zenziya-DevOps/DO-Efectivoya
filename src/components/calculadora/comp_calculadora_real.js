@@ -52,15 +52,14 @@ const CalculadoraReal = () => {
     }
   }, [])
 
-  function Calcular_Cuota(monto, plazo, frecuencia, tasa) {
+  function Calcular_Cuota(monto, plazo, frecuencia) {
     var monto = monto || montoCalculadora
     var plazo = plazo || plazoCalculadora
     var frecuencia = frecuencia || frecuenciaCalculadora
-    var tasa = tasa || tasaCalculadora
 
     let F = frecuencia == 1 ? 30 : 15
     let R = (tasa / 100 / 365) * F
-    let montoConFee = monto * fee
+    let montoConFee = monto * (1 + fee)
     cantidadDeCuotas = frecuencia == 1 ? plazo : plazo * 2
     let P = montoConFee * (R / (1 - (1 + R) ** -cantidadDeCuotas))
     let valorCuota = Math.round(P / 5) * 5

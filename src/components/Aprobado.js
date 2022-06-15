@@ -8,14 +8,14 @@ import Countdown from "react-countdown"
 import aprobado from "../images/img_aprobado.png"
 
 export const Aprobado = () => {
-  const [celular, setCelular] = useState(0)
+  const [cedula, setCedula] = useState(0)
   const onRenderer = ({ seconds }) => {
     return <label>En {seconds} segundos avanzará al chat</label>
   }
 
   useEffect(() => {
     if (!location.state) history.push("/")
-    setCelular(location.state.celular)
+    setCedula(location.state.cedula)
   }, [])
 
   return (
@@ -58,7 +58,7 @@ export const Aprobado = () => {
               onComplete={() => {
                 window.location.href =
                   "https://api.whatsapp.com/send/?phone=18494104542&text=Mi+numero+de+c%C3%A9dula+es+" +
-                  celular +
+                  cedula +
                   "+y+%C2%A1Quiero+un+pr%C3%A9stamo+Efectivo+Ya!&app_absent=0"
               }}
             />
