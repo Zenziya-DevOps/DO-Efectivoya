@@ -37,20 +37,14 @@ export class COMP_Header extends Component {
             <Row className="pt-1">
               {device.device.type === "desktop" ? (
                 <>
-                  <Col
-                    xs={device.device.type === "desktop" ? 4 : 12}
-                    className="my-auto"
-                  >
+                  <Col xs={12} sm={4} className="my-auto">
                     <img
                       src={imagenCarrousel}
                       className="p-3 my-auto img img-fluid"
                     />
                   </Col>
 
-                  <Col
-                    xs={device.device.type === "desktop" ? 4 : 12}
-                    className="my-auto text-center"
-                  >
+                  <Col xs={12} sm={4} className="my-auto text-center">
                     <label
                       className="font-weight-bold"
                       style={label_(3, 0, "2.2em")}
@@ -102,10 +96,7 @@ export class COMP_Header extends Component {
                     </p>
                   </Col>
 
-                  <Col
-                    xs={device.device.type === "desktop" ? 4 : 12}
-                    className="my-auto text-center"
-                  >
+                  <Col xs={12} sm={4} className="my-auto text-center">
                     <img
                       src={imagenCarrousel}
                       className="my-auto img img-fluid"

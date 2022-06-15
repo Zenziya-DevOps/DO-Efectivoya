@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import { label_ } from "../../../styles/leters"
 import { Container, Row, Col } from "react-bootstrap"
-import { device } from "../../../model/device"
 import bk_4 from "../../../images/bk_4.svg"
 
 export class COMP_Cuotas extends Component {
@@ -26,10 +25,7 @@ export class COMP_Cuotas extends Component {
 
             <Col xs={12}>
               <Row className="justify-content-md-center ">
-                <Col
-                  xs={device.device.type === "desktop" ? 4 : 12}
-                  className="p-3 pl-3"
-                >
+                <Col xs={12} sm={4} className="p-3 pl-3">
                   <Col xs={12} className="">
                     <Col xs={12}>
                       {" "}
@@ -94,10 +90,7 @@ export class COMP_Cuotas extends Component {
                   </Col>
                 </Col>
 
-                <Col
-                  xs={device.device.type === "desktop" ? 4 : 12}
-                  className="p-3 pl-3"
-                >
+                <Col xs={12} sm={4} className="p-3 pl-3">
                   <Col xs={12} className="">
                     <Col xs={12} className="">
                       {" "}
