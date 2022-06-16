@@ -14,6 +14,7 @@ export const COMPCalculadoras = () => {
   }
 
   const handleSubmitMonto = () => {
+    debugger
     history.push("/ingreso_cedula/" + monto)
     // interaccionesService.interacciones({
     //   step: step.OFERTA,

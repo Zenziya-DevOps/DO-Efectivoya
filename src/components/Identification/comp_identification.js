@@ -66,7 +66,7 @@ export const COMPIdentification = () => {
     cookieValidator()
     Trace.Ofert = true
     Trace.Identificacion = true
-    Process(Trace, "Log")
+    //Process(Trace, "Log")
   }, [])
 
   const handleChangeDocument = async (e) => {
@@ -74,31 +74,31 @@ export const COMPIdentification = () => {
     const { value } = e.target
 
     if (value.length > 8) {
-      interaccionesService.interacciones({
-        step: step.INGRESA_IDENTIFICACION,
-        value: value,
-        KeyOrigen: keyOrigen,
-        idCookie: localStorage.getItem("cookie"),
-        timeStamp: new Date(),
-      })
+      // interaccionesService.interacciones({
+      //   step: step.INGRESA_IDENTIFICACION,
+      //   value: value,
+      //   KeyOrigen: keyOrigen,
+      //   idCookie: localStorage.getItem("cookie"),
+      //   timeStamp: new Date(),
+      // })
 
       if (!esCedulaValida(value)) {
-        interaccionesService.interacciones({
-          step: step.IDENTIFICACION_INVALIDA,
-          value: value,
-          KeyOrigen: keyOrigen,
-          idCookie: localStorage.getItem("cookie"),
-          timeStamp: new Date(),
-        })
+        // interaccionesService.interacciones({
+        //   step: step.IDENTIFICACION_INVALIDA,
+        //   value: value,
+        //   KeyOrigen: keyOrigen,
+        //   idCookie: localStorage.getItem("cookie"),
+        //   timeStamp: new Date(),
+        // })
         setErrorMessage("La cédula ingresada no es válida")
       } else {
-        interaccionesService.interacciones({
-          step: step.VALIDA_IDENTIFICACION,
-          value: value,
-          KeyOrigen: keyOrigen,
-          idCookie: localStorage.getItem("cookie"),
-          timeStamp: new Date(),
-        })
+        // interaccionesService.interacciones({
+        //   step: step.VALIDA_IDENTIFICACION,
+        //   value: value,
+        //   KeyOrigen: keyOrigen,
+        //   idCookie: localStorage.getItem("cookie"),
+        //   timeStamp: new Date(),
+        // })
 
         setIsValidCode(true)
         setCedula(value)
