@@ -211,8 +211,8 @@ export const COMPIdentification = () => {
             </b>
           </DialogContentText>
           <DialogContentText className="text-center mt-4">
-            Necesitamos tu número de cédula para ver hasta cuánto podemos
-            prestarte.
+            Necesitamos tu cédula para proteger tu identidad y evitar casos de
+            fraude.
           </DialogContentText>
           <Button onClick={handleClose} className="btn-zz btn-block mt-5">
             Entendido

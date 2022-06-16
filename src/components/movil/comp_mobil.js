@@ -149,12 +149,12 @@ export const COMPMobile = () => {
         <DialogContent>
           <DialogContentText className="text-center fs-22">
             <b>
-              ¿Por qué te pedimos <br /> tu celu?
+              ¿Por qué te pedimos <br /> tu celular?
             </b>
           </DialogContentText>
           <DialogContentText className="text-center mt-3">
-            Necesitamos tu número de celu para poder comunicarte novedades sobre
-            tu préstamo.
+            Necesitamos tu número de celular para chequear que nadie se haga
+            pasar por tí y poder comunicarte novedades sobre tu préstamo.
           </DialogContentText>
           <Button onClick={handleClose} className="btn-zz btn-block mt-5">
             Entendido
