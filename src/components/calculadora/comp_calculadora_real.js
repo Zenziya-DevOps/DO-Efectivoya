@@ -63,7 +63,6 @@ const CalculadoraReal = () => {
     cantidadDeCuotas = frecuencia == 1 ? plazo : plazo * 2
     let P = montoConFee * (R / (1 - (1 + R) ** -cantidadDeCuotas))
     let valorCuota = Math.round(P / 5) * 5
-
     setMensajeCuota(
       `<b class="violet">${cantidadDeCuotas}</b> cuotas de <b class="violet">RD$ ${valorCuota
         .toString()

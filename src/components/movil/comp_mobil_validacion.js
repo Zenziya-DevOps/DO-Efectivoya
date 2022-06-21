@@ -53,12 +53,14 @@ export const OtpValidacion = () => {
   }
 
   const execDoScoring = () => {
-    var { credito, celular } = location.state
-    credito.celular = celular
-    history.push({
-      pathname: `/procesar_solicitud`,
-      state: { credito },
-    })
+    if (isValidCode) {
+      var { credito, celular } = location.state
+      credito.celular = celular
+      history.push({
+        pathname: `/procesar_solicitud`,
+        state: { credito },
+      })
+    }
   }
 
   return (

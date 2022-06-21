@@ -53,10 +53,11 @@ export const COMPMobile = () => {
   }
 
   const goToValidarResultado = () => {
-    history.push({
-      pathname: `/validacion_otp_resultado`,
-      state: { celular, credito: location.state.credito },
-    })
+    if (isValidCellphone)
+      history.push({
+        pathname: `/validacion_otp_resultado`,
+        state: { celular, credito: location.state.credito },
+      })
   }
   return (
     <>
