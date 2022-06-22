@@ -12,44 +12,15 @@ import { ProcesarSolicitud } from "./../components/ProcesarSolicitud"
 import { IngresoCedula } from "../components/IngresoCedula"
 
 import bk_1 from "../images/bk_1.svg"
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from "react-router-dom"
+import { HashRouter, Route, Switch, Redirect } from "react-router-dom"
 import { COMP_Header_real } from "../components/home/header/comp_header_real"
 import { Aprobado } from "../components/Aprobado"
 import { Desaprobado } from "../components/Desaprobado"
 
 export const Vw_OnBoarding = () => {
   return (
-    <Router>
+    <HashRouter>
       <Switch>
-        <Route
-          path="/contrato"
-          component={() => {
-            window.location.href = "https://sitio.efectivoya.do/contrato"
-            return null
-          }}
-        />
-        <Route
-          path="/knoxguard"
-          component={() => {
-            window.location.href = "https://sitio.efectivoya.do/knoxguard"
-            return null
-          }}
-        />
-
-        <Route
-          path="/pagosreferenciados"
-          component={() => {
-            window.location.href =
-              "https://sitio.efectivoya.do/pagosreferenciados"
-            return null
-          }}
-        />
-
         <Route path="/ingreso_cedula/:monto">
           <IngresoCedula />
         </Route>
@@ -100,6 +71,6 @@ export const Vw_OnBoarding = () => {
           </div>
         </Route>
       </Switch>
-    </Router>
+    </HashRouter>
   )
 }
