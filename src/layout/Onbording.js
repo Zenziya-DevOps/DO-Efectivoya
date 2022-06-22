@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React from "react"
 import { COMP_Header } from "../components/home/header/comp_header"
 import { COMP_Pasos } from "../components/home/pasos/comp_pasos"
 import { COMP_Requisitos } from "../components/home/requesitos/comp_requisitos"
@@ -26,30 +26,6 @@ export const Vw_OnBoarding = () => {
   return (
     <Router>
       <Switch>
-        <Route
-          path="/contrato"
-          component={() => {
-            window.location.href = "https://sitio.efectivoya.do/contrato"
-            return null
-          }}
-        />
-        <Route
-          path="/knoxguard"
-          component={() => {
-            window.location.href = "https://sitio.efectivoya.do/knoxguard"
-            return null
-          }}
-        />
-
-        <Route
-          path="/pagosreferenciados"
-          component={() => {
-            window.location.href =
-              "https://sitio.efectivoya.do/pagosreferenciados"
-            return null
-          }}
-        />
-
         <Route path="/ingreso_cedula/:monto">
           <IngresoCedula />
         </Route>

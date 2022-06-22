@@ -25,7 +25,7 @@ const doScoring = async (body) => {
 
 const interacciones = async (body) => {
   try {
-    const resp = await axios.post(`${baseUrl}/scoring/doScoring`, body, {
+    const resp = await axios.post(`${baseUrl}/interaction/save`, body, {
       "Content-Type": "application/json",
     })
     return resp.data

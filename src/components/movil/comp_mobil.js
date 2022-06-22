@@ -18,7 +18,6 @@ import TextField from "@mui/material/TextField"
 import InfoIcon from "@mui/icons-material/Info"
 import { Trace } from "../../model/trace"
 import "../../css/placeholder.css"
-import interaccionesService from "../../services/interacciones"
 import Countdown from "react-countdown"
 
 export const COMPMobile = () => {

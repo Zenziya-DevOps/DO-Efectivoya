@@ -64,10 +64,6 @@ export const preguntasFrecuentes = [
   },
 ]
 
-export const keyOrigen =
-  new URLSearchParams(window.location.search).get("p") ||
-  "DO000003000001000001000001000001"
-
 export const step = {
   VISITA: "Visita",
   OFERTA: "Oferta",

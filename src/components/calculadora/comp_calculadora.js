@@ -2,7 +2,9 @@ import React, { useState } from "react"
 import { Container, Row, Col, Button, Form } from "react-bootstrap"
 import { useHistory } from "react-router-dom"
 import { Slider } from "@material-ui/core"
+import api_efectivoya from "./../../services/api_efectivoya"
 import { Box_ } from "../../styles/Box"
+import { step } from "./../../constants"
 import "../../css/Btt.css"
 
 export const COMPCalculadoras = () => {
@@ -14,13 +16,12 @@ export const COMPCalculadoras = () => {
   }
 
   const handleSubmitMonto = () => {
+    api_efectivoya.interacciones({
+      step: step.OFERTA,
+      value: `Monto: ${monto}`,
+      idCookie: localStorage.getItem("cookie"),
+    })
     history.push("/ingreso_cedula/" + monto)
-    // interaccionesService.interacciones({
-    //   step: step.OFERTA,
-    //   value: `Monto: ${monto}`,
-    //   idCookie: localStorage.getItem("cookie"),
-    //   timeStamp: new Date(),
-    // })
   }
 
   return (
