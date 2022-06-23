@@ -8,6 +8,8 @@ import { Container, Row, Col } from "react-bootstrap"
 import LinearProgress from "@mui/material/LinearProgress"
 
 import api_efectivoya from "./../services/api_efectivoya"
+import { step } from "./../constants"
+import { getCookie } from "../helpers"
 
 export const ProcesarSolicitud = () => {
   const history = useHistory()
@@ -17,6 +19,14 @@ export const ProcesarSolicitud = () => {
     if (!location.state) history.push("/")
     const { credito } = location.state
     const result = await api_efectivoya.doScoring(credito)
+
+    api_efectivoya.interacciones({
+      step: step.PROCESA_SOLICITUD,
+      value: `{ dcsResult: ${JSON.stringify(result)} }`,
+      idCookie: getCookie(),
+      url: window.location.href,
+    })
+
     if (result.ShortScoring === "Done") {
       history.push({
         pathname: `/solicitud/aprobado`,

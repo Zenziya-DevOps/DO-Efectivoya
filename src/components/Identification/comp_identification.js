@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { Process } from "../../services/process"
+import api_efectivoya from "./../../services/api_efectivoya"
+import { step } from "./../../constants"
 import { Typography } from "@mui/material"
 import { Container, Row, Col } from "react-bootstrap"
 import { Trace } from "../../model/trace"
-import { cookieValidator } from "../../helpers/cookieValidator"
 import { useParams, useHistory } from "react-router-dom"
 import Countdown from "react-countdown"
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline"
@@ -60,10 +60,8 @@ export const COMPIdentification = () => {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    cookieValidator()
     Trace.Ofert = true
     Trace.Identificacion = true
-    //Process(Trace, "Log")
   }, [])
 
   const handleChangeDocument = async (e) => {
@@ -71,31 +69,28 @@ export const COMPIdentification = () => {
     const { value } = e.target
 
     if (value.length > 8) {
-      // interaccionesService.interacciones({
-      //   step: step.INGRESA_IDENTIFICACION,
-      //   value: value,
-      //   KeyOrigen: keyOrigen,
-      //   idCookie: localStorage.getItem("cookie"),
-      //   timeStamp: new Date(),
-      // })
+      api_efectivoya.interacciones({
+        step: step.INGRESA_IDENTIFICACION,
+        value: `La cédula ingresada es ${value}`,
+        idCookie: localStorage.getItem("cookie"),
+        url: window.location.href,
+      })
 
       if (!esCedulaValida(value)) {
-        // interaccionesService.interacciones({
-        //   step: step.IDENTIFICACION_INVALIDA,
-        //   value: value,
-        //   KeyOrigen: keyOrigen,
-        //   idCookie: localStorage.getItem("cookie"),
-        //   timeStamp: new Date(),
-        // })
+        api_efectivoya.interacciones({
+          step: step.IDENTIFICACION_INVALIDA,
+          value: `La cédula ingresada es ${value}`,
+          idCookie: localStorage.getItem("cookie"),
+          url: window.location.href,
+        })
         setErrorMessage("La cédula ingresada no es válida")
       } else {
-        // interaccionesService.interacciones({
-        //   step: step.VALIDA_IDENTIFICACION,
-        //   value: value,
-        //   KeyOrigen: keyOrigen,
-        //   idCookie: localStorage.getItem("cookie"),
-        //   timeStamp: new Date(),
-        // })
+        api_efectivoya.interacciones({
+          step: step.VALIDA_IDENTIFICACION,
+          value: `La cédula ingresada es ${value}`,
+          idCookie: localStorage.getItem("cookie"),
+          url: window.location.href,
+        })
 
         setIsValidCode(true)
         setCedula(value)

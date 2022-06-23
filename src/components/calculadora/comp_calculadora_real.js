@@ -9,6 +9,8 @@ import Box from "@mui/material/Box"
 import Slider from "@mui/material/Slider"
 import Button from "@mui/material/Button"
 import CircularProgress from "@mui/material/CircularProgress"
+import { step } from "./../../constants"
+import { getCookie } from "../../helpers"
 
 const deviceDetector = new DeviceDetector()
 const userAgent = window.navigator.userAgent
@@ -32,9 +34,16 @@ const CalculadoraReal = () => {
 
   useEffect(async () => {
     var result = await api_efectivoya.getCalculadoraReal(cedula)
+
     if (result.Rejected) {
       history.push("/solicitud/rechazado")
     } else {
+      api_efectivoya.interacciones({
+        step: step.MUESTRA_CALCULADORA,
+        value: JSON.stringify(result),
+        idCookie: getCookie(),
+        url: window.location.href,
+      })
       setDatosCalculadora(result.Done)
       setMontoCalculadora(result.Done.MontoDefaultMensual)
       setPlazoCalculadora(result.Done.PlazoDefaultMensual)
@@ -81,6 +90,7 @@ const CalculadoraReal = () => {
   const handleChangeFrecuencia = (event, value) => {
     setFrecuenciaCalculadora(event.target.value)
     Calcular_Cuota(null, null, event.target.value)
+    saveInteraction()
   }
 
   const handleChangeMonto = (event, value) => {
@@ -106,10 +116,42 @@ const CalculadoraReal = () => {
     credito.modelo = device.device.model
     credito.campana = 1
     credito.tipoDispositivo = device.device.type
-    credito.idCookie = localStorage.getItem("cookie")
-    credito.ipConnection = data.IPv4
+    ;(credito.idCookie = getCookie()), (credito.ipConnection = data.IPv4)
+
+    api_efectivoya.interacciones({
+      step: step.SUBMIT_CALCULADORA,
+      value: JSON.stringify(credito),
+      idCookie: getCookie(),
+      url: window.location.href,
+    })
 
     history.push({ pathname: `/validacion_otp`, state: { credito } })
+  }
+
+  const saveInteraction = async () => {
+    const response = await fetch("https://geolocation-db.com/json/")
+    const data = await response.json()
+
+    var dataToSave = {
+      frecuenciaSolicitada: frecuenciaCalculadora,
+      cantCuotasSolicitadas: cantidadDeCuotas,
+      montoSolicitado: montoCalculadora,
+      cedula: cedula,
+      celular: null,
+      marca: device.device.brand,
+      modelo: device.device.model,
+      campana: 1,
+      tipoDispositivo: device.device.type,
+      idCookie: localStorage.getItem("cookie"),
+      ipConnection: data.IPv4,
+    }
+
+    api_efectivoya.interacciones({
+      step: step.ACTIVIDAD_CALCULADORA,
+      value: JSON.stringify(dataToSave),
+      idCookie: getCookie(),
+      url: window.location.href,
+    })
   }
 
   return (
@@ -176,6 +218,7 @@ const CalculadoraReal = () => {
                 max={datosCalculadora.MontoMaxMensual}
                 onChange={handleChangeMonto}
                 valueLabelDisplay="on"
+                onChangeCommitted={saveInteraction}
               />
             </Box>
 
@@ -190,6 +233,7 @@ const CalculadoraReal = () => {
                 max={datosCalculadora.PlazoMaxMensual}
                 onChange={handleChangePlazo}
                 valueLabelDisplay="on"
+                onChangeCommitted={saveInteraction}
               />
             </Box>
             <Box className="text-center" mb={2} mt={3}>
