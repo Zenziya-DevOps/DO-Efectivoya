@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { COMP_Header } from "../components/home/header/comp_header"
 import { COMP_Pasos } from "../components/home/pasos/comp_pasos"
 import { COMP_Requisitos } from "../components/home/requesitos/comp_requisitos"
@@ -13,13 +13,29 @@ import { IngresoCedula } from "../components/IngresoCedula"
 
 import bk_1 from "../images/bk_1.svg"
 import { HashRouter, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import { COMP_Header_real } from "../components/home/header/comp_header_real"
 import { Aprobado } from "../components/Aprobado"
 import { Desaprobado } from "../components/Desaprobado"
 
+import api_efectivoya from "./../services/api_efectivoya"
+import { step } from "./../constants"
+import { getCookie } from "../helpers"
+
 export const Vw_OnBoarding = () => {
+  useEffect(async () => {
+    const response = await fetch("https://geolocation-db.com/json/")
+    const data = await response.json()
+    api_efectivoya.interacciones({
+      step: step.VISITA,
+      value: JSON.stringify(data),
+      idCookie: getCookie(),
+      url: window.location.href,
+    })
+  }, [])
+
   return (
-    <HashRouter>
+    <Router>
       <Switch>
         <Route path="/ingreso_cedula/:monto">
           <IngresoCedula />
@@ -71,6 +87,6 @@ export const Vw_OnBoarding = () => {
           </div>
         </Route>
       </Switch>
-    </HashRouter>
+    </Router>
   )
 }

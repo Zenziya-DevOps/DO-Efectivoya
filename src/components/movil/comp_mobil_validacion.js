@@ -11,6 +11,9 @@ import ico from "../../images/ico.svg"
 import close from "../../images/close.svg"
 import "../../css/placeholder.css"
 
+import { step } from "./../../constants"
+import { getCookie } from "../../helpers"
+
 export const OtpValidacion = () => {
   const history = useHistory()
   const location = useLocation()
@@ -37,6 +40,15 @@ export const OtpValidacion = () => {
 
       if (result.found) setIsValidCode(true)
       else setMessage("El código ingresado es incorrecto")
+
+      api_efectivoya.interacciones({
+        step: step.INGRESA_OTP,
+        value: `{otp: ${otp}, message:  ${
+          isValidCode ? "valido" : "invalido"
+        }}`,
+        idCookie: getCookie(),
+        url: window.location.href,
+      })
     }
   }
 

@@ -7,6 +7,8 @@ import { Typography, Button } from "@material-ui/core"
 import WhatsAppIcon from "@mui/icons-material/WhatsApp"
 import Countdown from "react-countdown"
 import aprobado from "../images/img_aprobado.png"
+import api_efectivoya from "./../services/api_efectivoya"
+import { step } from "./../constants"
 
 export const Aprobado = () => {
   const location = useLocation()
@@ -16,8 +18,17 @@ export const Aprobado = () => {
   }
 
   useEffect(() => {
-    if (!location.state) history.push("/")
-    setCedula(location.state.cedula)
+    if (!location.state) {
+      history.push("/")
+    } else {
+      api_efectivoya.interacciones({
+        step: step.APROBADO,
+        value: `Cliente notificado como APROBADO`,
+        idCookie: localStorage.getItem("cookie"),
+        url: window.location.href,
+      })
+      setCedula(location.state.cedula)
+    }
   }, [])
 
   return (
@@ -58,6 +69,13 @@ export const Aprobado = () => {
               date={Date.now() + 5000}
               renderer={onRenderer}
               onComplete={() => {
+                api_efectivoya.interacciones({
+                  step: step.INICIO_CHATBOT_AUTOMATICO,
+                  value: `Go to botmaker Automatico`,
+                  idCookie: localStorage.getItem("cookie"),
+                  url: window.location.href,
+                })
+
                 window.location.href =
                   "https://api.whatsapp.com/send/?phone=18494104542&text=Mi+numero+de+c%C3%A9dula+es+" +
                   cedula +
@@ -68,6 +86,13 @@ export const Aprobado = () => {
               variant="contained"
               className="mt-3 btn-zz btn-block mb-5"
               onClick={() => {
+                api_efectivoya.interacciones({
+                  step: step.INICIO_CHATBOT,
+                  value: `Go to botmaker Boton`,
+                  idCookie: localStorage.getItem("cookie"),
+                  url: window.location.href,
+                })
+
                 window.location.href =
                   "https://api.whatsapp.com/send/?phone=18494104542&text=Mi+numero+de+c%C3%A9dula+es+" +
                   cedula +
