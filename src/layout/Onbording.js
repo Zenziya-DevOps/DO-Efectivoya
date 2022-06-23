@@ -12,7 +12,6 @@ import { ProcesarSolicitud } from "./../components/ProcesarSolicitud"
 import { IngresoCedula } from "../components/IngresoCedula"
 
 import bk_1 from "../images/bk_1.svg"
-import { HashRouter, Route, Switch } from "react-router-dom"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import { COMP_Header_real } from "../components/home/header/comp_header_real"
 import { Aprobado } from "../components/Aprobado"
