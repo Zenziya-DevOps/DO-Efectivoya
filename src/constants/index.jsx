@@ -79,4 +79,13 @@ export const step = {
   VALIDA_IDENTIFICACION_AUTOMATICO: "ValidaIdentificacionAutomatico",
   INICIO_CHATBOT_AUTOMATICO: "InicioChatBotAutomatico",
   VALIDA_TELEFONO_AUTOMATICO: "ValidaTelefonoAutomatico",
+  RECHAZADO: "Rechazado",
+  APROBADO: "Aprobado",
+  MUESTRA_CALCULADORA: "MuestraCalculadora",
+  ACTIVIDAD_CALCULADORA: "ActividadCalculadora",
+  SUBMIT_CALCULADORA: "SubmitCalculadora",
+  ENVIO_SMS: "EnvioSms",
+  INGRESA_OTP: "IngresaOTP",
+  PROCESA_SOLICITUD: "ProcesaSolicitud",
+  SUBMIT_PRIMER_MONTO: "SubmitPrimerMonto",
 }

@@ -3,8 +3,9 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap"
 import { useHistory } from "react-router-dom"
 import { Slider } from "@material-ui/core"
 import api_efectivoya from "./../../services/api_efectivoya"
-import { Box_ } from "../../styles/Box"
 import { step } from "./../../constants"
+import { getCookie } from "../../helpers"
+import { Box_ } from "../../styles/Box"
 import "../../css/Btt.css"
 
 export const COMPCalculadoras = () => {
@@ -17,9 +18,10 @@ export const COMPCalculadoras = () => {
 
   const handleSubmitMonto = () => {
     api_efectivoya.interacciones({
-      step: step.OFERTA,
+      step: step.SUBMIT_PRIMER_MONTO,
       value: `Monto: ${monto}`,
-      idCookie: localStorage.getItem("cookie"),
+      idCookie: getCookie(),
+      url: window.location.href,
     })
     history.push("/ingreso_cedula/" + monto)
   }

@@ -1,14 +1,22 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import { Typography } from "@mui/material"
 import ico from "../images/ico.svg"
 import close from "../images/close.svg"
-import List from "@mui/material/List"
-import ListItem from "@mui/material/ListItem"
-import ListItemButton from "@mui/material/ListItemButton"
-import ListItemText from "@mui/material/ListItemText"
+import api_efectivoya from "./../services/api_efectivoya"
+import { step } from "./../constants"
+import { getCookie } from "../helpers"
 
 export const Desaprobado = () => {
+  useEffect(() => {
+    api_efectivoya.interacciones({
+      step: step.RECHAZADO,
+      value: `Cliente notificado como rechazado`,
+      idCookie: getCookie(),
+      url: window.location.href,
+    })
+  }, [])
+
   return (
     <>
       <Container

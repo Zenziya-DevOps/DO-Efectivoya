@@ -16,9 +16,12 @@ import {
 } from "@mui/material"
 import TextField from "@mui/material/TextField"
 import InfoIcon from "@mui/icons-material/Info"
-import { Trace } from "../../model/trace"
 import "../../css/placeholder.css"
 import Countdown from "react-countdown"
+
+import api_efectivoya from "./../../services/api_efectivoya"
+import { step } from "./../../constants"
+import { getCookie } from "../../helpers"
 
 export const COMPMobile = () => {
   const history = useHistory()
@@ -42,6 +45,12 @@ export const COMPMobile = () => {
   const sendSms = (e) => {
     const celular = e.target.value
     if (celular.length === 10) {
+      api_efectivoya.interacciones({
+        step: step.ENVIO_SMS,
+        value: `Se envía SMS al ${celular}`,
+        idCookie: getCookie(),
+        url: window.location.href,
+      })
       setIsValidCellphone(true)
       setCelular(celular)
     }
