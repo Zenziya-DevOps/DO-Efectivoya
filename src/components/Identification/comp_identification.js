@@ -148,6 +148,7 @@ export const COMPIdentification = () => {
             <TextField
               type="number"
               maxLength="11"
+              disabled={isValidCode}
               label="Número de cédula"
               onChange={handleChangeDocument}
               className="w100p"

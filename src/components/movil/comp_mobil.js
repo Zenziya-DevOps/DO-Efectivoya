@@ -110,6 +110,7 @@ export const COMPMobile = () => {
               <TextField
                 type="number"
                 maxLength="11"
+                disabled={isValidCellphone}
                 label="Número de celular"
                 className="w100p"
                 onChange={sendSms}
