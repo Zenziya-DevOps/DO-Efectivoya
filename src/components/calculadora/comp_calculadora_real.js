@@ -154,6 +154,104 @@ const CalculadoraReal = () => {
     })
   }
 
+  // return (
+  //   <>
+  //          <>
+  //         <Box xs={12} className="my-auto text-center pt-1 white">
+  //           <p className="fs-32">
+  //             <b>
+  //               Tienes RD $
+  //               {/* {datosCalculadora.MontoDefaultMensual.toString().replace(
+  //                 /\B(?=(\d{3})+(?!\d))/g,
+  //                 "."
+  //               )}{" "} */}
+  //               3000
+  //               disponibles
+  //             </b>
+  //           </p>
+  //         </Box>
+  //         <Box className="calculadora-real" pr={5} pl={5} pt={3} pb={3}>
+  //           <Box>
+  //             <span>Cuota</span>
+  //             <div className="d-flex justify-content-center row">
+  //               <button
+  //                 type="button"
+  //                 className={
+  //                   frecuenciaCalculadora == 1
+  //                     ? "Calc-Active m-1"
+  //                     : "Calc-Desac m-1"
+  //                 }
+  //                 value="1"
+  //                 onClick={handleChangeFrecuencia}
+  //               >
+  //                 Mensual
+  //               </button>
+  //               <button
+  //                 type="button"
+  //                 className={
+  //                   frecuenciaCalculadora == 15
+  //                     ? "Calc-Active m-1"
+  //                     : "Calc-Desac m-1"
+  //                 }
+  //                 value="15"
+  //                 onClick={handleChangeFrecuencia}
+  //               >
+  //                 Quincenal
+  //               </button>
+  //             </div>
+  //           </Box>
+
+  //           <Box mt={3}>
+  //             <span>¿Cuanto vas a pedir?</span>
+  //             <Slider
+  //               aria-label="Always visible"
+  //               valueLabelFormat={valuetext}
+  //               value={montoCalculadora}
+  //               step={1000}
+  //               min={datosCalculadora.MontoMinMensual}
+  //               max={datosCalculadora.MontoMaxMensual}
+  //               onChange={handleChangeMonto}
+  //               valueLabelDisplay="on"
+  //               onChangeCommitted={saveInteraction}
+  //             />
+  //           </Box>
+
+  //           <Box mt={2}>
+  //             <span>Plazo</span>
+  //             <Slider
+  //               aria-label="Always visible"
+  //               valueLabelFormat={plazoFormat}
+  //               value={plazoCalculadora}
+  //               step={1}
+  //               min={datosCalculadora.PlazoMinMensual}
+  //               max={datosCalculadora.PlazoMaxMensual}
+  //               onChange={handleChangePlazo}
+  //               valueLabelDisplay="on"
+  //               onChangeCommitted={saveInteraction}
+  //             />
+  //           </Box>
+  //           <Box className="text-center" mb={2} mt={3}>
+  //             <div
+  //               className="fs-22"
+  //               dangerouslySetInnerHTML={{ __html: mensajeCuota }}
+  //             />
+  //           </Box>
+  //           <Box alignItems="center">
+  //             <Button
+  //               onClick={submit}
+  //               variant="contained"
+  //               className="btn-block btn-zz"
+  //             >
+  //               Solicitar ahora
+  //             </Button>
+  //           </Box>
+  //         </Box>
+  //       </>
+  //   </>
+  // )
+
+  // Comentar este return y descomentar el return de arriba , para probar los cambios 
+
   return (
     <>
       {showLoading ? (

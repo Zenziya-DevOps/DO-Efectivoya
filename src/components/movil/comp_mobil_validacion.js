@@ -19,6 +19,7 @@ export const OtpValidacion = () => {
   const location = useLocation()
   const [isValidCode, setIsValidCode] = useState(false)
   const [message, setMessage] = useState("")
+  const [code, setCode] = useState('')
 
   useEffect(async () => {
     if (!location.state) history.push("/")
@@ -32,6 +33,11 @@ export const OtpValidacion = () => {
   const validateOtp = async (e) => {
     setMessage("")
     const otp = e.target.value
+    if(otp.length > 4){
+      return
+    }else {
+     setCode(e.target.value)
+    }
     if (otp.length === 4) {
       const result = await api_efectivoya.otpVerification(
         location.state.celular,
@@ -114,6 +120,7 @@ export const OtpValidacion = () => {
                 maxLength="11"
                 className="w50p"
                 variant="standard"
+                value={code}
                 inputProps={{
                   style: {
                     textAlign: "center",
