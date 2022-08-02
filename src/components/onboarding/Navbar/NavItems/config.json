@@ -1,0 +1,16 @@
+{
+    "navlinks":[
+        {
+            "label":"Pedir un préstamo",
+            "route":"/"
+        },
+        {
+            "label":"Sobre nosotros",
+            "route":"/us"
+        },
+        {
+            "label":"Preguntas frecuentes",
+            "route":"/faqs"
+        }
+    ]
+}

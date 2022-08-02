@@ -22,7 +22,7 @@ export class COMP_Consultas extends Component {
       <>
         <div
           style={{
-            backgroundImage: `url(${bk_3})`,
+            //backgroundImage: `url(${bk_3})`,
             backgroundSize: "cover",
             backgroundPosition: "top , rigth",
             backgroundRepeat: "no-repeat",

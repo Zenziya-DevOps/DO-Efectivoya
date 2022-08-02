@@ -20,6 +20,7 @@ import { Desaprobado } from "../components/Desaprobado"
 import api_efectivoya from "./../services/api_efectivoya"
 import { step } from "./../constants"
 import { getCookie } from "../helpers"
+import OnBoard from "../components/onboarding"
 
 export const Vw_OnBoarding = () => {
   useEffect(async () => {
@@ -65,25 +66,7 @@ export const Vw_OnBoarding = () => {
         </Route>
 
         <Route exact path="/">
-          <div id="master">
-            <COMP_Header />
-            <COMP_Pasos />
-            <div
-              style={{
-                backgroundImage: `url(${bk_1})`,
-                backgroundSize: "cover",
-                backgroundPosition: "bottom",
-                backgroundRepeat: "no-repeat",
-                marginTop: "-12px",
-              }}
-            >
-              <COMP_Requisitos />
-            </div>
-            <COMP_Consultas />
-            <COMP_historia />
-            <COMP_Cuotas />
-            <COMP_Footer />
-          </div>
+            <OnBoard/>
         </Route>
       </Switch>
     </Router>

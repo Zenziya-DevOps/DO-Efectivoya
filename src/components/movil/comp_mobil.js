@@ -22,6 +22,8 @@ import Countdown from "react-countdown"
 import api_efectivoya from "./../../services/api_efectivoya"
 import { step } from "./../../constants"
 import { getCookie } from "../../helpers"
+import { useContext } from "react"
+import { DataContext } from "../../context/DataProvider"
 
 export const COMPMobile = () => {
   const history = useHistory()
@@ -29,6 +31,8 @@ export const COMPMobile = () => {
   const [open, setOpen] = useState(false)
   const [isValidCellphone, setIsValidCellphone] = useState(false)
   const [celular, setCelular] = useState(0)
+
+  const {setPhoneNumber} = useContext(DataContext)
 
   useEffect(() => {
     if (!location.state) history.push("/")
@@ -62,6 +66,7 @@ export const COMPMobile = () => {
 
   const goToValidarResultado = () => {
     if (isValidCellphone)
+    setPhoneNumber(celular)
       history.push({
         pathname: `/validacion_otp_resultado`,
         state: { celular, credito: location.state.credito },

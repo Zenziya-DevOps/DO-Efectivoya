@@ -9,6 +9,8 @@ import * as constant from "../../../constants"
 import imagenCarrousel from "./../../../images/EFECTIVO-YO-700png.png"
 import bk_0 from "../../../images/bk_0.svg"
 import ico from "../../../images/ico.svg"
+import Navbar from "../../onboarding/Navbar/Navbar"
+
 
 export class COMP_Header extends Component {
   render() {
@@ -24,7 +26,8 @@ export class COMP_Header extends Component {
           }}
         >
           <Container fluid>
-            <Row className="p-3 my-auto mb-4 rounded">
+            <Navbar/>
+            {/* <Row className="p-3 my-auto mb-4 rounded">
               <Col className="p-2">
                 <img src={`${ico}`} style={{ width: "195px" }} />
               </Col>
@@ -32,7 +35,7 @@ export class COMP_Header extends Component {
               <Col xs={1} className="my-auto ml-auto">
                 <Burger />
               </Col>
-            </Row>
+            </Row> */}
 
             <Row className="pt-1">
               {device.device.type === "desktop" ? (

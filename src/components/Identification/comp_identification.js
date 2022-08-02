@@ -17,6 +17,9 @@ import {
   DialogContentText,
   DialogActions,
 } from "@mui/material"
+import { useContext } from "react"
+import { DataContext } from "../../context/DataProvider"
+
 
 const esCedulaValida = (cedula) => {
   cedula = cedula.replace(/-/g, "").padStart(11, "0")
@@ -59,6 +62,8 @@ export const COMPIdentification = () => {
   const [cedula, setCedula] = useState(0)
   const [open, setOpen] = useState(false)
 
+  const { setPersonalId } = useContext(DataContext)
+
   useEffect(() => {
     Trace.Ofert = true
     Trace.Identificacion = true
@@ -69,29 +74,30 @@ export const COMPIdentification = () => {
     const { value } = e.target
 
     if (value.length > 8) {
-      api_efectivoya.interacciones({
-        step: step.INGRESA_IDENTIFICACION,
-        value: `La cédula ingresada es ${value}`,
-        idCookie: localStorage.getItem("cookie"),
-        url: window.location.href,
-      })
+      // api_efectivoya.interacciones({
+      //   step: step.INGRESA_IDENTIFICACION,
+      //   value: `La cédula ingresada es ${value}`,
+      //   idCookie: localStorage.getItem("cookie"),
+      //   url: window.location.href,
+      // })
 
       if (!esCedulaValida(value)) {
-        api_efectivoya.interacciones({
-          step: step.IDENTIFICACION_INVALIDA,
-          value: `La cédula ingresada es ${value}`,
-          idCookie: localStorage.getItem("cookie"),
-          url: window.location.href,
-        })
+        // api_efectivoya.interacciones({
+        //   step: step.IDENTIFICACION_INVALIDA,
+        //   value: `La cédula ingresada es ${value}`,
+        //   idCookie: localStorage.getItem("cookie"),
+        //   url: window.location.href,
+        // })
         setErrorMessage("La cédula ingresada no es válida")
       } else {
-        api_efectivoya.interacciones({
-          step: step.VALIDA_IDENTIFICACION,
-          value: `La cédula ingresada es ${value}`,
-          idCookie: localStorage.getItem("cookie"),
-          url: window.location.href,
-        })
-
+        // api_efectivoya.interacciones({
+        //   step: step.VALIDA_IDENTIFICACION,
+        //   value: `La cédula ingresada es ${value}`,
+        //   idCookie: localStorage.getItem("cookie"),
+        //   url: window.location.href,
+        // })
+        // setPersonalId(value)
+        setPersonalId(value)
         setIsValidCode(true)
         setCedula(value)
       }

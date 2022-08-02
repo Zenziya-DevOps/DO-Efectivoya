@@ -1,0 +1,18 @@
+/* display:'flex',justifyContent:'space-around',alignItems:'center',width:'100%' */
+
+.testimonials_wrapper {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    margin: 100px auto;
+}
+
+@media screen and (max-width:1024px) {
+    .testimonials_wrapper {
+        width: 95%;
+        flex-direction: column !important;
+        
+    }
+}

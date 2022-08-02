@@ -11,6 +11,7 @@ import Button from "@mui/material/Button"
 import CircularProgress from "@mui/material/CircularProgress"
 import { step } from "./../../constants"
 import { getCookie } from "../../helpers"
+import axios from 'axios'
 
 const deviceDetector = new DeviceDetector()
 const userAgent = window.navigator.userAgent
@@ -33,32 +34,41 @@ const CalculadoraReal = () => {
   let history = useHistory()
 
   useEffect(async () => {
-    var result = await api_efectivoya.getCalculadoraReal(cedula)
+    // var result = await api_efectivoya.getCalculadoraReal(cedula)
+    console.log('first')
+    const result = await axios.post('https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-a742d8e4-bd78-40b3-a91e-04a498929d57/default/mock_onboarding_do',{
+      "connection_ip": "190.13.41.66",
+      "cookie_id":"sdfghjk",
+      "personal_id": "40220760116",
+      "phone_number": "8294699678"
+  })
 
-    if (result.Rejected) {
-      history.push("/solicitud/rechazado")
-    } else {
-      api_efectivoya.interacciones({
-        step: step.MUESTRA_CALCULADORA,
-        value: JSON.stringify(result),
-        idCookie: getCookie(),
-        url: window.location.href,
-      })
-      setDatosCalculadora(result.Done)
-      setMontoCalculadora(result.Done.MontoDefaultMensual)
-      setPlazoCalculadora(result.Done.PlazoDefaultMensual)
-      tasa = result.Done.TasaMensual
-      fee = result.Done.Fee
+    // if (result.Rejected) {
+    //   history.push("/solicitud/rechazado")
+    // } else {
+    //   // api_efectivoya.interacciones({
+    //   //   step: step.MUESTRA_CALCULADORA,
+    //   //   value: JSON.stringify(result),
+    //   //   idCookie: getCookie(),
+    //   //   url: window.location.href,
+    //   // })
+    //   setDatosCalculadora(result.Done)
+    //   setMontoCalculadora(result.Done.MontoDefaultMensual)
+    //   setPlazoCalculadora(result.Done.PlazoDefaultMensual)
+    //   tasa = result.Done.TasaMensual
+    //   fee = result.Done.Fee
 
-      Calcular_Cuota(
-        result.Done.MontoDefaultMensual,
-        result.Done.PlazoDefaultMensual,
-        frecuenciaCalculadora,
-        result.Done.TasaMensual
-      )
+    //   Calcular_Cuota(
+    //     result.Done.MontoDefaultMensual,
+    //     result.Done.PlazoDefaultMensual,
+    //     frecuenciaCalculadora,
+    //     result.Done.TasaMensual
+    //   )
 
-      setShowLoading(false)
-    }
+    //   setShowLoading(false)
+    // }
+
+    setShowLoading(false)
   }, [])
 
   function Calcular_Cuota(monto, plazo, frecuencia) {
@@ -107,6 +117,8 @@ const CalculadoraReal = () => {
     const response = await fetch("https://geolocation-db.com/json/")
     const data = await response.json()
 
+    console.log(data)
+
     credito.frecuenciaSolicitada = frecuenciaCalculadora
     credito.cantCuotasSolicitadas = cantidadDeCuotas
     credito.montoSolicitado = montoCalculadora
@@ -118,12 +130,12 @@ const CalculadoraReal = () => {
     credito.tipoDispositivo = device.device.type
     ;(credito.idCookie = getCookie()), (credito.ipConnection = data.IPv4)
 
-    api_efectivoya.interacciones({
-      step: step.SUBMIT_CALCULADORA,
-      value: JSON.stringify(credito),
-      idCookie: getCookie(),
-      url: window.location.href,
-    })
+    // api_efectivoya.interacciones({
+    //   step: step.SUBMIT_CALCULADORA,
+    //   value: JSON.stringify(credito),
+    //   idCookie: getCookie(),
+    //   url: window.location.href,
+    // })
 
     history.push({ pathname: `/validacion_otp`, state: { credito } })
   }
@@ -146,12 +158,12 @@ const CalculadoraReal = () => {
       ipConnection: data.IPv4,
     }
 
-    api_efectivoya.interacciones({
-      step: step.ACTIVIDAD_CALCULADORA,
-      value: JSON.stringify(dataToSave),
-      idCookie: getCookie(),
-      url: window.location.href,
-    })
+    // api_efectivoya.interacciones({
+    //   step: step.ACTIVIDAD_CALCULADORA,
+    //   value: JSON.stringify(dataToSave),
+    //   idCookie: getCookie(),
+    //   url: window.location.href,
+    // })
   }
 
   // return (
@@ -266,10 +278,12 @@ const CalculadoraReal = () => {
             <p className="fs-32">
               <b>
                 Tienes RD $
-                {datosCalculadora.MontoDefaultMensual.toString().replace(
+                30000 
+                {' '}
+                {/* {datosCalculadora.MontoDefaultMensual.toString().replace(
                   /\B(?=(\d{3})+(?!\d))/g,
                   "."
-                )}{" "}
+                )}{" "} */}
                 disponibles
               </b>
             </p>
@@ -312,8 +326,10 @@ const CalculadoraReal = () => {
                 valueLabelFormat={valuetext}
                 value={montoCalculadora}
                 step={1000}
-                min={datosCalculadora.MontoMinMensual}
-                max={datosCalculadora.MontoMaxMensual}
+                min={5000}
+                max={30000}
+                // min={datosCalculadora.MontoMinMensual}
+                // max={datosCalculadora.MontoMaxMensual}
                 onChange={handleChangeMonto}
                 valueLabelDisplay="on"
                 onChangeCommitted={saveInteraction}
@@ -327,8 +343,10 @@ const CalculadoraReal = () => {
                 valueLabelFormat={plazoFormat}
                 value={plazoCalculadora}
                 step={1}
-                min={datosCalculadora.PlazoMinMensual}
-                max={datosCalculadora.PlazoMaxMensual}
+                min={1}
+                max={48}
+                // min={datosCalculadora.PlazoMinMensual}
+                // max={datosCalculadora.PlazoMaxMensual}
                 onChange={handleChangePlazo}
                 valueLabelDisplay="on"
                 onChangeCommitted={saveInteraction}

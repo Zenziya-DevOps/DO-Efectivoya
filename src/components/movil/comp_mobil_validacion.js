@@ -13,6 +13,9 @@ import "../../css/placeholder.css"
 
 import { step } from "./../../constants"
 import { getCookie } from "../../helpers"
+import { useContext } from "react"
+import { DataContext } from "../../context/DataProvider"
+import axios from "axios"
 
 export const OtpValidacion = () => {
   const history = useHistory()
@@ -21,16 +24,25 @@ export const OtpValidacion = () => {
   const [message, setMessage] = useState("")
   const [code, setCode] = useState('')
 
+  const {finalResult,info} = useContext(DataContext)
+
   useEffect(async () => {
     if (!location.state) history.push("/")
     var result = await api_efectivoya.createOtp(location.state.celular)
+    finalResult()
     if (result.des_respuesta !== "OK")
       setMessage(
         "Hubo un problema al enviar el SMS, por favor intente más tarde."
       )
+
+
+
   }, [])
 
   const validateOtp = async (e) => {
+
+
+
     setMessage("")
     const otp = e.target.value
     if(otp.length > 4){
@@ -39,13 +51,18 @@ export const OtpValidacion = () => {
      setCode(e.target.value)
     }
     if (otp.length === 4) {
-      const result = await api_efectivoya.otpVerification(
-        location.state.celular,
-        otp
-      )
 
-      if (result.found) setIsValidCode(true)
-      else setMessage("El código ingresado es incorrecto")
+      const {data} = await axios.post('https://mock-landing-do-bwom9.ondigitalocean.app/validate',{
+        personal_id:info.personal_id,
+        phone_number:info.phone_number,
+        pin : otp
+      })
+
+      if (data.result === 'valid') {
+        setIsValidCode(true)
+      }else {
+        setMessage("El código ingresado es incorrecto")
+      } 
 
       api_efectivoya.interacciones({
         step: step.INGRESA_OTP,
@@ -121,6 +138,7 @@ export const OtpValidacion = () => {
                 className="w50p"
                 variant="standard"
                 value={code}
+                disabled={isValidCode}
                 inputProps={{
                   style: {
                     textAlign: "center",

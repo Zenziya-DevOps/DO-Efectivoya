@@ -10,30 +10,47 @@ import LinearProgress from "@mui/material/LinearProgress"
 import api_efectivoya from "./../services/api_efectivoya"
 import { step } from "./../constants"
 import { getCookie } from "../helpers"
+import { useContext } from "react"
+import { DataContext } from "../context/DataProvider"
 
 export const ProcesarSolicitud = () => {
+
+  const {status} = useContext(DataContext)
+
   const history = useHistory()
   const location = useLocation()
 
   useEffect(async () => {
     if (!location.state) history.push("/")
-    const { credito } = location.state
-    const result = await api_efectivoya.doScoring(credito)
+    // const { credito } = location.state
+    // const result = await api_efectivoya.doScoring(credito)
 
-    api_efectivoya.interacciones({
-      step: step.PROCESA_SOLICITUD,
-      value: `{ dcsResult: ${JSON.stringify(result)} }`,
-      idCookie: getCookie(),
-      url: window.location.href,
-    })
+    // api_efectivoya.interacciones({
+    //   step: step.PROCESA_SOLICITUD,
+    //   value: `{ dcsResult: ${JSON.stringify(result)} }`,
+    //   idCookie: getCookie(),
+    //   url: window.location.href,
+    // })
 
-    if (result.ShortScoring === "Done") {
-      history.push({
-        pathname: `/solicitud/aprobado`,
-        state: { cedula: credito.cedula },
-      })
-    } else {
+    // if (result.ShortScoring === "Done") {
+    //   history.push({
+    //     pathname: `/solicitud/aprobado`,
+    //     state: { cedula: credito.cedula },
+    //   })
+    // } else {
+    //   history.push("/solicitud/rechazado")
+    // }
+
+    if(!status){
+      history.push("/")
+    }else if( status === 'rejected') {
       history.push("/solicitud/rechazado")
+    }else {
+      console.log('llego aca')
+        history.push({
+        pathname: `/solicitud/aprobado`,
+        // state: { cedula: credito.cedula },
+      })
     }
   }, [])
 

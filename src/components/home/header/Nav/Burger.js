@@ -6,16 +6,15 @@ import { colors } from "../../../../styles/colors"
 const StyledBurger = styled.div`
   width: 2rem;
   height: 2rem;
-  position: fixed;
-  right: 20px;
-  top: 1.5rem;
-  z-index: 20;
+  top: 2rem;
+  z-index: 103;
   display: none;
+  rigth:10px;
   display: flex;
   justify-content: space-around;
   flex-flow: column nowrap;
   div {
-    width: 1.5rem;
+    width: 100%;
     height: 0.25rem;
     background-color: ${({ open }) => (open ? colors[3] : colors[3])};
     border-radius: 10px;

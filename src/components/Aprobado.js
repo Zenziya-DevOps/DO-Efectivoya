@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { useLocation } from "react-router-dom"
+import React, { useState, useEffect, useContext } from "react"
+import { useHistory, useLocation } from "react-router-dom"
 import { Container, Row, Col } from "react-bootstrap"
 import ico from "../images/ico.svg"
 import close from "../images/close.svg"
@@ -9,27 +9,30 @@ import Countdown from "react-countdown"
 import aprobado from "../images/img_aprobado.png"
 import api_efectivoya from "./../services/api_efectivoya"
 import { step } from "./../constants"
+import { DataContext } from "../context/DataProvider"
 
 export const Aprobado = () => {
   const location = useLocation()
-  const [cedula, setCedula] = useState(0)
+  const {info} = useContext(DataContext)
+  const [cedula, setCedula] = useState(info.personal_id)
+  const history = useHistory()
   const onRenderer = ({ seconds }) => {
     return <label>En {seconds} segundos avanzará al chat</label>
   }
 
-  useEffect(() => {
-    if (!location.state) {
-      history.push("/")
-    } else {
-      api_efectivoya.interacciones({
-        step: step.APROBADO,
-        value: `Cliente notificado como APROBADO`,
-        idCookie: localStorage.getItem("cookie"),
-        url: window.location.href,
-      })
-      setCedula(location.state.cedula)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (!location.state) {
+  //     history.push("/")
+  //   } else {
+  //     // api_efectivoya.interacciones({
+  //     //   step: step.APROBADO,
+  //     //   value: `Cliente notificado como APROBADO`,
+  //     //   idCookie: localStorage.getItem("cookie"),
+  //     //   url: window.location.href,
+  //     // })
+  //     setCedula(location.state.cedula)
+  //   }
+  // }, [])
 
   return (
     <>
@@ -68,19 +71,19 @@ export const Aprobado = () => {
             <Countdown
               date={Date.now() + 5000}
               renderer={onRenderer}
-              onComplete={() => {
-                api_efectivoya.interacciones({
-                  step: step.INICIO_CHATBOT_AUTOMATICO,
-                  value: `Go to botmaker Automatico`,
-                  idCookie: localStorage.getItem("cookie"),
-                  url: window.location.href,
-                })
+              // onComplete={() => {
+              //   api_efectivoya.interacciones({
+              //     step: step.INICIO_CHATBOT_AUTOMATICO,
+              //     value: `Go to botmaker Automatico`,
+              //     idCookie: localStorage.getItem("cookie"),
+              //     url: window.location.href,
+              //   })
 
-                window.location.href =
-                  "https://api.whatsapp.com/send/?phone=18494104542&text=Mi+numero+de+c%C3%A9dula+es+" +
-                  cedula +
-                  "+y+%C2%A1Quiero+un+pr%C3%A9stamo+Efectivo+Ya!&app_absent=0"
-              }}
+              //   window.location.href =
+              //     "https://api.whatsapp.com/send/?phone=18494104542&text=Mi+numero+de+c%C3%A9dula+es+" +
+              //     cedula +
+              //     "+y+%C2%A1Quiero+un+pr%C3%A9stamo+Efectivo+Ya!&app_absent=0"
+              // }}
             />
             <Button
               variant="contained"

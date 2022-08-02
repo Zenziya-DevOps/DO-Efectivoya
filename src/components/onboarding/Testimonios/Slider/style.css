@@ -1,0 +1,34 @@
+.wrapper {
+    background: #f6f6f6;
+    border-radius: 15px;
+    height: 468px;
+    width: 544px;
+    padding: 20px 0;
+}
+
+.react-multi-carousel-dot {
+    border: none;
+}
+
+
+.react-multi-carousel-dot--active  button {
+
+    background-color: #008dff !important;
+    border-color: #f6f6f6 !important;
+}
+
+.react-multi-carousel-dot button {
+    border-color: #f6f6f6 !important;
+}
+.react-multi-carousel-dot-list {
+    padding-bottom: 10px;
+} 
+
+
+
+@media screen and (max-width:1024px) {
+    .wrapper {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}

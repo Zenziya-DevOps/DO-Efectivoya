@@ -1,0 +1,86 @@
+.horizontal_line {
+
+    position: relative;
+    width: 100%;
+/* 
+    background: #007bff; 
+    width: 200px;
+    height: 1px;
+    margin: 20px 0 0 0; */
+}
+
+.horizontal_line::before {
+
+    position: absolute;
+    top: 16px;
+    left: -30px;
+    display: block;
+    width: 120%;
+    height: 1px;
+    background: #007bff; 
+    content: "";
+}
+
+
+
+.vertical_line {
+    position: relative;
+    height: 100%;
+}
+
+.vertical_line::before {
+    background: #007bff; 
+    top: -80px;
+    left: 6px;
+    width: 1px;
+    height: 70px;
+    position: absolute;
+    content: '';
+}
+
+.pasos_container {
+    width: 100%;
+}
+
+.pasos_wrapper_horizontal {
+    display: flex;
+    width: 65%;
+    margin: 70px auto;
+    justify-content: space-evenly;
+}
+
+.pasos_wrapper_vertical {
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 100px 0;
+    padding-left: 70px;
+    justify-content: space-evenly;
+}
+
+
+.pasos_box_horizontal {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+    width: 100%;
+    max-width: 300px !important;
+}
+
+
+.pasos_box_vertical {
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    /* max-width: 300px; */
+    margin-bottom: 80px;
+}
+
+.pasos_box_horizontal p {
+
+    letter-spacing: 1px;
+}
+

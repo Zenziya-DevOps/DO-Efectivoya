@@ -6,9 +6,13 @@ import bk_2 from "../../../images/bk_2.svg"
 import pass_1 from "../../../images/pass_1.svg"
 import pass_2 from "../../../images/pass_2.svg"
 import pass_3 from "../../../images/pass_3.svg"
+import { useContext } from "react"
+import { UXUIContext } from "../../../context/UxUIProvider"
 
 export class COMP_Pasos extends Component {
+
   render() {
+      
     return (
       <>
         <div
@@ -37,7 +41,7 @@ export class COMP_Pasos extends Component {
               </Col>
 
               <Col xs={12} className="pt-5 pb-2">
-                <Row className="pb-5">
+                <Row className={`pb-5 `}>
                   <Col
                     xs={device.device.type === "desktop" ? 0 : 12}
                     className="pt-2 pb-2 text-center"

@@ -1,0 +1,51 @@
+.faqs_wrapper {
+    background-image: url('../../../images/faqs-bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 500px;
+    border-radius: 15px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 32px;
+
+}
+
+.faqs_wrapper div {
+    height: 100%;
+    width: 100%;
+}
+
+.faqs_wrapper h2 {
+    font-size: 2.8125rem;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+.faqs_wrapper button {
+
+    background-color: #fff;
+    color: #7e42c3;
+    border: none;
+    font-size: 1.375rem;
+    border-radius: 6px;
+    padding:0 calc(1rem * 2);
+    height: 60px;
+}
+
+
+@media screen and (max-width : 1025px) {
+    .faqs_wrapper{
+        width: 100%;
+    }
+
+    .faqs_wrapper h2 {
+        font-size: 28px;
+    }
+
+    .faqs_wrapper button {
+
+        width: 100%;
+    }
+
+}

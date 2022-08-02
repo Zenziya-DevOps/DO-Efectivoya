@@ -133,3 +133,21 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   display: none;
 }
+
+
+.nohover:hover {
+  color: #fff;
+  background-color: inherit;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+.nav-link:hover {
+  color: #288ebd !important;
+}
+
+
+.isActive {
+  color: #288ebd !important;
+}
